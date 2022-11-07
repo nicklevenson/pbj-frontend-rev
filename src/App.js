@@ -23,7 +23,7 @@ function App() {
   return (
     <div>
       <Nav />
-      {Authentication.loggedIn() && <Outlet />}
+      {Authentication.loggedIn() && <Outlet context={[user]} />}
       {!Authentication.loggedIn() && <Navigate to="/login" />}
     </div>
   );
