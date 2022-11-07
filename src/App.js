@@ -1,8 +1,7 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, Navigate } from "react-router-dom";
 import Nav from "./components/Nav";
 import { useState, useEffect } from "react";
 import Authentication from "./authentication";
-import LoginCard from "./components/LoginCard";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -13,8 +12,8 @@ function App() {
     }
   }, []);
 
-  const attemptFetchUser = () => {
-    const fetchedUser = Authentication.fetchUser();
+  const attemptFetchUser = async () => {
+    const fetchedUser = await Authentication.fetchUser();
 
     if (fetchedUser) {
       setUser(fetchedUser);
@@ -25,7 +24,7 @@ function App() {
     <div>
       <Nav />
       {Authentication.loggedIn() && <Outlet />}
-      {!Authentication.loggedIn() && <LoginCard />}
+      {!Authentication.loggedIn() && <Navigate to="/login" />}
     </div>
   );
 }
