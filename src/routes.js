@@ -1,10 +1,16 @@
 import App from "./App";
+import LoginCard from "./components/LoginCard";
 
 const routes = [
   {
     path: "/",
     element: <App />,
-    children: [],
+    children: [
+      {
+        path: "/login",
+        element: <LoginCard />,
+      },
+    ],
   },
 ];
 
