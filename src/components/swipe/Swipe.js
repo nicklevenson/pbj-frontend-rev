@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import { useOutletContext } from "react-router-dom";
 import UserApi from "../../api/user-api";
+import PreviewUserCard from "./PreviewUserCard";
 
 const Swipe = () => {
-  const [user] = useOutletContext();
+  const [currentUser] = useOutletContext();
   const [recs, setRecs] = useState([]);
   const [activeIndex, setActiveIndex] = useState(0);
   const [shownUser, setShownUser] = useState(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     fetchRecs();
   }, []);
 
@@ -30,7 +31,13 @@ const Swipe = () => {
     setRecs(recs);
   };
 
-  return <div></div>;
+  return (
+    <div>
+      {shownUser && (
+        <PreviewUserCard shownUser={shownUser} currentUser={currentUser} />
+      )}
+    </div>
+  );
 };
 
 export default Swipe;

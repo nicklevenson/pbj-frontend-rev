@@ -4,10 +4,10 @@ import { useState, useEffect } from "react";
 import Authentication from "./authentication";
 
 function App() {
-  const [user, setUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
-    if (!user && Authentication.loggedIn()) {
+    if (!currentUser && Authentication.loggedIn()) {
       attemptFetchUser();
     }
   }, []);
@@ -16,14 +16,14 @@ function App() {
     const fetchedUser = await Authentication.fetchUser();
 
     if (fetchedUser) {
-      setUser(fetchedUser);
+      setCurrentUser(fetchedUser);
     }
   };
 
   return (
     <div>
       <Nav />
-      {Authentication.loggedIn() && <Outlet context={[user]} />}
+      {Authentication.loggedIn() && <Outlet context={[currentUser]} />}
       {!Authentication.loggedIn() && <Navigate to="/login" />}
     </div>
   );
