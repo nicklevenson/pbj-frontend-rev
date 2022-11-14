@@ -35,7 +35,10 @@ const Swipe = () => {
 
   const handleMessageLink = () => {};
 
-  const handleConnectionRequest = () => {};
+  const handleConnectionRequest = async () => {
+    await UserApi.requestConnection(shownUser.info.id);
+    nextCard();
+  };
 
   const handleConnectionAccept = () => {};
 

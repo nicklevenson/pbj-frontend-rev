@@ -44,6 +44,23 @@ class UserApi {
 
     return request;
   };
+
+  static requestConnection = (requested_id) => {
+    console.log("requesting connection");
+
+    const request = $.ajax({
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${sessionStorage.jwt} ${sessionStorage.userId}`,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      url: `${process.env.REACT_APP_BACKEND_URL}/users/${sessionStorage.userId}/request_connection`,
+      data: JSON.stringify({ requested_id: requested_id }),
+    });
+
+    return request;
+  };
 }
 
 export default UserApi;
