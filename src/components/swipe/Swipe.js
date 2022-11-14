@@ -2,6 +2,8 @@ import React, { useState, useEffect, useLayoutEffect } from "react";
 import { useOutletContext } from "react-router-dom";
 import UserApi from "../../api/user-api";
 import PreviewUserCard from "./PreviewUserCard";
+import ConnectForm from "../user/ConnectForm";
+import NextUserButton from "./NextUserButton";
 
 const Swipe = () => {
   const [currentUser] = useOutletContext();
@@ -15,7 +17,7 @@ const Swipe = () => {
 
   useEffect(() => {
     fetchShownUser();
-  }, [recs]);
+  }, [recs, activeIndex]);
 
   const fetchShownUser = async () => {
     const id = recs[activeIndex];
@@ -31,10 +33,39 @@ const Swipe = () => {
     setRecs(recs);
   };
 
+  const handleMessageLink = () => {};
+
+  const handleConnectionRequest = () => {};
+
+  const handleConnectionAccept = () => {};
+
+  const handleConnectionReject = () => {};
+
+  const nextCard = () => {
+    const id = recs[activeIndex];
+
+    if (activeIndex === recs.length - 1) {
+      this.resetIndex();
+    } else {
+      setActiveIndex((prevState) => prevState + 1);
+    }
+  };
+
   return (
     <div>
-      {shownUser && (
-        <PreviewUserCard shownUser={shownUser} currentUser={currentUser} />
+      {currentUser && shownUser && (
+        <div>
+          <PreviewUserCard shownUser={shownUser} currentUser={currentUser} />
+          <ConnectForm
+            currentUser={currentUser}
+            shownUser={shownUser}
+            handleMessageLink={handleMessageLink}
+            handleConnectionRequest={handleConnectionRequest}
+            handleConnectionAccept={handleConnectionAccept}
+            handleConnectionReject={handleConnectionReject}
+          />
+          <NextUserButton nextCard={nextCard} />
+        </div>
       )}
     </div>
   );
