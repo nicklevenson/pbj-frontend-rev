@@ -4,12 +4,14 @@ import UserApi from "../../api/user-api";
 import PreviewUserCard from "./PreviewUserCard";
 import ConnectForm from "../user/ConnectForm";
 import NextUserButton from "./NextUserButton";
+import { Animated } from "react-animated-css";
 
 const Swipe = () => {
   const [currentUser] = useOutletContext();
   const [recs, setRecs] = useState([]);
   const [activeIndex, setActiveIndex] = useState(0);
   const [shownUser, setShownUser] = useState(null);
+  const [cardInTransition, setCardInTransition] = useState(false);
 
   useLayoutEffect(() => {
     fetchRecs();
@@ -40,7 +42,17 @@ const Swipe = () => {
     nextCard();
   };
 
-  const handleConnectionAccept = () => {};
+  const handleConnectionAccept = async () => {
+    await UserApi.acceptConnection(shownUser.info.id);
+    nextCard();
+  };
+
+  const animateCardIn = () => {
+    setCardInTransition(true);
+    setTimeout(() => {
+      setCardInTransition(false);
+    }, 200);
+  };
 
   const handleConnectionReject = () => {};
 
@@ -50,6 +62,7 @@ const Swipe = () => {
     if (activeIndex === recs.length - 1) {
       this.resetIndex();
     } else {
+      animateCardIn();
       setActiveIndex((prevState) => prevState + 1);
     }
   };
@@ -58,16 +71,23 @@ const Swipe = () => {
     <div>
       {currentUser && shownUser && (
         <div>
-          <PreviewUserCard shownUser={shownUser} currentUser={currentUser} />
-          <ConnectForm
-            currentUser={currentUser}
-            shownUser={shownUser}
-            handleMessageLink={handleMessageLink}
-            handleConnectionRequest={handleConnectionRequest}
-            handleConnectionAccept={handleConnectionAccept}
-            handleConnectionReject={handleConnectionReject}
-          />
-          <NextUserButton nextCard={nextCard} />
+          <Animated
+            animationIn="slideInRight"
+            animationOut="slideOutLeft"
+            isVisible={!cardInTransition}
+            animationInDuration={200}
+          >
+            <PreviewUserCard shownUser={shownUser} currentUser={currentUser} />
+            <ConnectForm
+              currentUser={currentUser}
+              shownUser={shownUser}
+              handleMessageLink={handleMessageLink}
+              handleConnectionRequest={handleConnectionRequest}
+              handleConnectionAccept={handleConnectionAccept}
+              handleConnectionReject={handleConnectionReject}
+            />
+            <NextUserButton nextCard={nextCard} />
+          </Animated>
         </div>
       )}
     </div>

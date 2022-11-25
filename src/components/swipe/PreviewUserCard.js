@@ -8,17 +8,9 @@ import UsernameLink from "../user/UsernameLink";
 import ConnectedUsers from "../user/ConnectedUsers";
 import LocationBanner from "../user/LocationBanner";
 import Bio from "../user/Bio";
-import ConnectForm from "../user/ConnectForm";
 
-const PreviewUserCard = ({
-  currentUser,
-  shownUser,
-  handleConnectionAccept,
-  handleConnectionReject,
-  handleConnectionRequest,
-  handleMessageLink,
-}) => {
-  console.log(currentUser);
+const PreviewUserCard = ({ currentUser, shownUser }) => {
+  console.log(shownUser);
   const info = shownUser.info;
   const connections = shownUser.connections;
   const {
