@@ -1,7 +1,10 @@
 const NextUserButton = ({ nextCard }) => {
   return (
-    <button className="ui primary button floated right" onClick={nextCard}>
-      Next User
+    <button
+      className="py-2 px-4 h-full bg-indigo-600 text-white border-gray-500 border-solid border rounded"
+      onClick={nextCard}
+    >
+      Next
     </button>
   );
 };

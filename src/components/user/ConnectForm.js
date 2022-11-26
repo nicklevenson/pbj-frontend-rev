@@ -35,7 +35,10 @@ const ConnectForm = ({
   return (
     <div>
       {isPendingOutgoingRequest() && (
-        <button disabled className="ui button secondary disabled">
+        <button
+          disabled
+          className="py-2 px-4 h-full bg-indigo-600 text-white border-gray-500 border-solid border rounded disabled"
+        >
           Pending
         </button>
       )}
@@ -43,13 +46,13 @@ const ConnectForm = ({
         <>
           {/* <h5>{this.props.shownUser.username} has requested to connect</h5> */}
           <button
-            className="ui button secondary"
+            className="py-2 px-4 h-full bg-indigo-600 text-white border-gray-500 border-solid border rounded"
             onClick={handleConnectionAccept}
           >
             Accept
           </button>
           <button
-            className="ui button secondary"
+            className="py-2 px-4 h-full bg-indigo-600 text-white border-gray-500 border-solid border rounded"
             onClick={handleConnectionReject}
           >
             Reject
@@ -58,8 +61,9 @@ const ConnectForm = ({
       )}
       {isAlreadyConnected() && (
         <button
-          className="message-user-button ui button secondary"
+          className="message-user-button "
           onClick={handleMessageLink}
+          className="py-2 px-4 h-full bg-indigo-600 text-white border-gray-500 border-solid border rounded"
         >
           Message
         </button>
@@ -67,9 +71,9 @@ const ConnectForm = ({
       {noConnection() && (
         <button
           onClick={handleConnectionRequest}
-          className="ui button secondary"
+          className="py-2 px-4 h-full bg-indigo-600 text-white border-gray-500 border-solid border rounded"
         >
-          Let's Jam!
+          Jam!
         </button>
       )}
     </div>

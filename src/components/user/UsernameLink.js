@@ -4,7 +4,7 @@ const UsernameLink = ({ userInfo }) => {
       <div
         // onClick={this.handleProfileClick}
         aria-label="go to user profile"
-        className="user-profile-link"
+        className="text-3xl"
       >
         {userInfo.username}
       </div>

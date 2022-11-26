@@ -1,8 +1,8 @@
 const UserPhoto = ({ userInfo }) => {
   return (
-    <div className="">
+    <div>
       <img
-        className=""
+        className="w-full"
         src={
           userInfo.photo ||
           userInfo.providerImage ||

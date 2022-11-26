@@ -2,7 +2,7 @@ import helpers from "../../global-helpers";
 
 const GenericTag = ({ tag, editable, removeTag }) => {
   return (
-    <div className="generic-tag">
+    <span className="bg-blue-300 rounded p-2 mx-2 text-white">
       {helpers.titleize(tag)}
       {editable ? (
         <button
@@ -13,7 +13,7 @@ const GenericTag = ({ tag, editable, removeTag }) => {
           X
         </button>
       ) : null}
-    </div>
+    </span>
   );
 };
 

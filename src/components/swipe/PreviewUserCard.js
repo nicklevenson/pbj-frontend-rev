@@ -26,15 +26,21 @@ const PreviewUserCard = ({ currentUser, shownUser }) => {
       <div>
         <UserPhoto userInfo={info} />
 
-        <div className="card-info">
+        <div className="mx-2 my-4">
           <UsernameLink userInfo={info} />
           <ConnectedUsers connections={connections} />
           <LocationBanner location={info.location} />
+          <div className="my-6"></div>
           <Bio bio={info.bio} />
+          <div className="my-6"></div>
           <SimilarTags similarTags={similar_tags} />
+          <div className="my-6"></div>
           <Instruments instruments={instruments} />
+          <div className="my-6"></div>
           <SpotifyTags spotifyTags={spotify} />
+          <div className="my-6"></div>
           <GenreTags genres={genres} />
+          <div className="my-6"></div>
           <GenericTags genericTags={generic} />
         </div>
       </div>

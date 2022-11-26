@@ -22,7 +22,7 @@ function App() {
 
   return (
     <div>
-      <div className="mt-8 min-h-screen bg-gray-100">
+      <div className="mt-8 min-h-screen">
         {Authentication.loggedIn() && <Outlet context={[currentUser]} />}
         {!Authentication.loggedIn() && <Navigate to="/login" />}
       </div>

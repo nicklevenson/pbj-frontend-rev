@@ -57,8 +57,6 @@ const Swipe = () => {
   const handleConnectionReject = () => {};
 
   const nextCard = () => {
-    const id = recs[activeIndex];
-
     if (activeIndex === recs.length - 1) {
       this.resetIndex();
     } else {
@@ -68,7 +66,7 @@ const Swipe = () => {
   };
 
   return (
-    <div>
+    <div className="overflow-y-scroll h-screen pb-44">
       {currentUser && shownUser && (
         <div>
           <Animated
@@ -78,16 +76,20 @@ const Swipe = () => {
             animationInDuration={200}
           >
             <PreviewUserCard shownUser={shownUser} currentUser={currentUser} />
-            <ConnectForm
-              currentUser={currentUser}
-              shownUser={shownUser}
-              handleMessageLink={handleMessageLink}
-              handleConnectionRequest={handleConnectionRequest}
-              handleConnectionAccept={handleConnectionAccept}
-              handleConnectionReject={handleConnectionReject}
-            />
-            <NextUserButton nextCard={nextCard} />
           </Animated>
+          <div className="fixed bottom-20 z-50 h-16 px-16 text-2xl w-full">
+            <div className="mt-2 w-full flex flex-row justify-between">
+              <ConnectForm
+                currentUser={currentUser}
+                shownUser={shownUser}
+                handleMessageLink={handleMessageLink}
+                handleConnectionRequest={handleConnectionRequest}
+                handleConnectionAccept={handleConnectionAccept}
+                handleConnectionReject={handleConnectionReject}
+              />
+              <NextUserButton nextCard={nextCard} />
+            </div>
+          </div>
         </div>
       )}
     </div>
