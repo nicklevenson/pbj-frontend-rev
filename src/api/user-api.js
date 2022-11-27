@@ -16,16 +16,21 @@ class UserApi {
     return request;
   };
 
-  static fetchUserRecs = () => {
+  static fetchUserRecs = (filters = {}) => {
     console.log("fetching user recs");
     const userId = sessionStorage.userId;
+    const range = filters.range ? `range=${filters.range}` : "";
+    const instruments = filters.instruments
+      ? `instruments=${filters.instruments}`
+      : "";
+    const genres = filters.genres ? `genres=${filters.genres}` : "";
 
     const request = $.ajax({
       method: "GET",
       headers: {
         Authorization: `Bearer ${sessionStorage.jwt} ${sessionStorage.userId}`,
       },
-      url: `${process.env.REACT_APP_BACKEND_URL}/users/${userId}/recommended_users`,
+      url: `${process.env.REACT_APP_BACKEND_URL}/users/${userId}/recommended_users?${range}&${instruments}&${genres}`,
     });
 
     return request;

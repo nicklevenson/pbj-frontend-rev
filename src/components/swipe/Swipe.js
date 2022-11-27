@@ -5,6 +5,7 @@ import PreviewUserCard from "./PreviewUserCard";
 import ConnectForm from "../user/ConnectForm";
 import NextUserButton from "./NextUserButton";
 import { Animated } from "react-animated-css";
+import Filter from "./Filter";
 
 const Swipe = () => {
   const [currentUser] = useOutletContext();
@@ -30,8 +31,10 @@ const Swipe = () => {
     }
   };
 
-  const fetchRecs = async () => {
-    const recs = await UserApi.fetchUserRecs();
+  const fetchRecs = async (params) => {
+    setShownUser(null);
+    setActiveIndex(0);
+    const recs = await UserApi.fetchUserRecs(params);
     setRecs(recs);
   };
 
@@ -66,7 +69,8 @@ const Swipe = () => {
   };
 
   return (
-    <div className="overflow-y-scroll h-screen pb-44">
+    <div className="overflow-y-scroll h-screen pt-8 pb-44">
+      <Filter fetchRecs={fetchRecs} />
       {currentUser && shownUser && (
         <div>
           <Animated

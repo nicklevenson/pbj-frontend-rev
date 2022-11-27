@@ -4,7 +4,7 @@ const SpotifyTags = ({ spotifyTags }) => {
   return (
     <div className="card-artists">
       <b>Top Artists </b>
-      <div className="card-artists-container">
+      <div className="flex overflow-x-auto w-full">
         {spotifyTags.map((tag) => {
           return <SpotifyTag tag={tag} key={Math.random() + tag.name} />;
         })}
