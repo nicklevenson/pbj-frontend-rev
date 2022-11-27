@@ -1,4 +1,4 @@
-export default InstrumentsList = [
+export const InstrumentsList = [
   "Afoxé",
   "Agogô",
   "Agung",

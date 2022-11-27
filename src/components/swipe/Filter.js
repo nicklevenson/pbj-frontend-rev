@@ -1,6 +1,7 @@
 import { useState } from "react";
 import RangeSlider from "./RangeSlider";
 import { BsFilter } from "react-icons/bs";
+import InstrumentSelection from "../shared/InstrumentSelection";
 
 const Filter = ({ fetchRecs }) => {
   const [displayed, setDisplayed] = useState(false);
@@ -15,7 +16,17 @@ const Filter = ({ fetchRecs }) => {
   const sendFilters = () => {
     fetchRecs({
       range: rangeSlider,
+      instruments: instruments.length > 0 ? instruments : null,
     });
+  };
+
+  const setInstrumentsCallback = (instrument) => {
+    setInstruments((prev) => [...prev, instrument]);
+  };
+
+  const handleRemoveInstrument = (instrument) => {
+    const newInstruments = instruments.filter((inst) => inst !== instrument);
+    setInstruments(newInstruments);
   };
 
   return (
@@ -29,6 +40,21 @@ const Filter = ({ fetchRecs }) => {
             rangeSlider={rangeSlider}
             changeRangeSlider={changeRangeSlider}
           />
+          <InstrumentSelection
+            setInstrumentsCallback={setInstrumentsCallback}
+          />
+          {instruments?.map((instrument) => {
+            return (
+              <div key={instrument}>
+                {instrument}{" "}
+                {displayed ? (
+                  <button onClick={() => handleRemoveInstrument(instrument)}>
+                    X
+                  </button>
+                ) : null}
+              </div>
+            );
+          })}
           <hr />
           <button className="connect-button" onClick={sendFilters}>
             Apply

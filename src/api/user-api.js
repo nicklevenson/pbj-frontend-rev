@@ -19,9 +19,9 @@ class UserApi {
   static fetchUserRecs = (filters = {}) => {
     console.log("fetching user recs");
     const userId = sessionStorage.userId;
-    const range = filters.range ? `range=${filters.range}` : "";
+    const range = filters.range ? `range=${filters.range}&` : "";
     const instruments = filters.instruments
-      ? `instruments=${filters.instruments}`
+      ? filters.instruments.map((i) => `instruments[]=${i}&`)
       : "";
     const genres = filters.genres ? `genres=${filters.genres}` : "";
 
@@ -30,7 +30,7 @@ class UserApi {
       headers: {
         Authorization: `Bearer ${sessionStorage.jwt} ${sessionStorage.userId}`,
       },
-      url: `${process.env.REACT_APP_BACKEND_URL}/users/${userId}/recommended_users?${range}&${instruments}&${genres}`,
+      url: `${process.env.REACT_APP_BACKEND_URL}/users/${userId}/recommended_users?${range}${instruments}${genres}`,
     });
 
     return request;
