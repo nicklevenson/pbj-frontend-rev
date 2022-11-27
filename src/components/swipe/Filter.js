@@ -1,5 +1,6 @@
 import { useState } from "react";
 import RangeSlider from "./RangeSlider";
+import { BsFilter } from "react-icons/bs";
 
 const Filter = ({ fetchRecs }) => {
   const [displayed, setDisplayed] = useState(false);
@@ -19,7 +20,9 @@ const Filter = ({ fetchRecs }) => {
 
   return (
     <div className="fixed top-12 z-10 bg-white w-full text-center min-h-[2rem]">
-      <div onClick={() => setDisplayed(!displayed)}>Filter</div>
+      <div onClick={() => setDisplayed(!displayed)}>
+        <BsFilter size={"2rem"} className="mx-auto" />
+      </div>
       {displayed && (
         <div>
           <RangeSlider
