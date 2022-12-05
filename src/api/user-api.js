@@ -21,9 +21,11 @@ class UserApi {
     const userId = sessionStorage.userId;
     const range = filters.range ? `range=${filters.range}&` : "";
     const instruments = filters.instruments
-      ? filters.instruments.map((i) => `instruments[]=${i}&`)
+      ? filters.instruments.map((i) => `instruments[]=${i}&`).join("")
       : "";
-    const genres = filters.genres ? `genres=${filters.genres}` : "";
+    const genres = filters.genres
+      ? filters.genres.map((i) => `genres[]=${i}&`).join("")
+      : "";
 
     const request = $.ajax({
       method: "GET",

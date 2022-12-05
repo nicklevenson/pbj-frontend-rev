@@ -1,45 +1,42 @@
 import { useState } from "react";
 
-const InstrumentSelection = ({ list, setInstrumentsCallback }) => {
+const GenreSelection = ({ list, setGenresCallback }) => {
   const [inputQuery, setInputQuery] = useState("");
   const [results, setResults] = useState([]);
 
   const handleClick = (e) => {
     const selection = e.target.innerText;
-    setInstrumentsCallback(selection);
+    setGenresCallback(selection);
     setResults([]);
     setInputQuery("");
   };
 
   const handleInputQuery = (e) => {
     setInputQuery(e.target.value);
-    const filteredInstruments = list
-      .filter((instrument) => {
-        return instrument.toLowerCase().includes(e.target.value.toLowerCase());
+    const filteredGenres = list
+      .filter((genre) => {
+        return genre.toLowerCase().includes(e.target.value.toLowerCase());
       })
       .splice(0, 30);
-    setResults(filteredInstruments);
+    setResults(filteredGenres);
   };
 
   return (
-    <div className="instruments-filter">
-      <label htmlFor="instruments filter">Instruments</label>
+    <div>
+      <label htmlFor="genres filter">Genres</label>
       <br />
       <input
-        name="instruments filter"
+        name="genres filter"
         className="filter-input"
-        placeholder="Search for Instruments"
+        placeholder="Search for Genres"
         value={inputQuery}
         onInput={(e) => handleInputQuery(e)}
-        aria-label="instrument search"
+        aria-label="genre search"
         autoComplete="off"
         type="text"
       />
 
-      <div
-        className="instruments-results options"
-        onClick={(e) => handleClick(e)}
-      >
+      <div onClick={(e) => handleClick(e)}>
         {inputQuery !== ""
           ? results.map((result) => {
               return <div>{result}</div>;
@@ -50,4 +47,4 @@ const InstrumentSelection = ({ list, setInstrumentsCallback }) => {
   );
 };
 
-export default InstrumentSelection;
+export default GenreSelection;

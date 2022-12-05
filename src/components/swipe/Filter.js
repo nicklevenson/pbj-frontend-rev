@@ -3,6 +3,7 @@ import RangeSlider from "./RangeSlider";
 import { BsFilter } from "react-icons/bs";
 import InstrumentSelection from "../shared/InstrumentSelection";
 import ListsApi from "../../api/lists_api";
+import GenreSelection from "../shared/GenreSelection";
 
 const Filter = ({ fetchRecs }) => {
   const [displayed, setDisplayed] = useState(false);
@@ -31,6 +32,7 @@ const Filter = ({ fetchRecs }) => {
     fetchRecs({
       range: rangeSlider,
       instruments: instruments.length > 0 ? instruments : null,
+      genres: genres.length > 0 ? genres : null,
     });
   };
 
@@ -38,9 +40,18 @@ const Filter = ({ fetchRecs }) => {
     setInstruments((prev) => [...prev, instrument]);
   };
 
+  const setGenresCallback = (genre) => {
+    setGenres((prev) => [...prev, genre]);
+  };
+
   const handleRemoveInstrument = (instrument) => {
     const newInstruments = instruments.filter((inst) => inst !== instrument);
     setInstruments(newInstruments);
+  };
+
+  const handleRemoveGenre = (genre) => {
+    const newGenres = genres.filter((gr) => gr !== genre);
+    setGenres(newGenres);
   };
 
   return (
@@ -58,6 +69,10 @@ const Filter = ({ fetchRecs }) => {
             list={instrumentsList}
             setInstrumentsCallback={setInstrumentsCallback}
           />
+          <GenreSelection
+            list={genresList}
+            setGenresCallback={setGenresCallback}
+          />
           {instruments?.map((instrument) => {
             return (
               <div key={instrument}>
@@ -66,6 +81,17 @@ const Filter = ({ fetchRecs }) => {
                   <button onClick={() => handleRemoveInstrument(instrument)}>
                     X
                   </button>
+                ) : null}
+              </div>
+            );
+          })}
+          <br />
+          {genres?.map((genre) => {
+            return (
+              <div key={genre}>
+                {genre}{" "}
+                {displayed ? (
+                  <button onClick={() => handleRemoveGenre(genre)}>X</button>
                 ) : null}
               </div>
             );
