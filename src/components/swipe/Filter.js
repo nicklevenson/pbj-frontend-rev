@@ -1,13 +1,27 @@
-import { useState } from "react";
+import { useState, useLayoutEffect } from "react";
 import RangeSlider from "./RangeSlider";
 import { BsFilter } from "react-icons/bs";
 import InstrumentSelection from "../shared/InstrumentSelection";
+import ListsApi from "../../api/lists_api";
 
 const Filter = ({ fetchRecs }) => {
   const [displayed, setDisplayed] = useState(false);
   const [rangeSlider, setRangeSlider] = useState(500);
+  const [instrumentsList, setInstrumentsList] = useState([]);
+  const [genresList, setGenresList] = useState([]);
   const [instruments, setInstruments] = useState([]);
   const [genres, setGenres] = useState([]);
+
+  useLayoutEffect(() => {
+    setInstrumentsAndGenres();
+  }, []);
+
+  const setInstrumentsAndGenres = async () => {
+    const list = await ListsApi.getInstrumentsAndGenres();
+
+    setInstrumentsList(list.instruments);
+    setGenresList(list.genres);
+  };
 
   const changeRangeSlider = (e) => {
     setRangeSlider(parseInt(e.target.value));
@@ -41,6 +55,7 @@ const Filter = ({ fetchRecs }) => {
             changeRangeSlider={changeRangeSlider}
           />
           <InstrumentSelection
+            list={instrumentsList}
             setInstrumentsCallback={setInstrumentsCallback}
           />
           {instruments?.map((instrument) => {

@@ -1,7 +1,6 @@
-import { InstrumentsList } from "./InstrumentsList";
 import { useState } from "react";
 
-const InstrumentSelection = ({ setInstrumentsCallback }) => {
+const InstrumentSelection = ({ list, setInstrumentsCallback }) => {
   const [inputQuery, setInputQuery] = useState("");
   const [results, setResults] = useState([]);
 
@@ -14,9 +13,11 @@ const InstrumentSelection = ({ setInstrumentsCallback }) => {
 
   const handleInputQuery = (e) => {
     setInputQuery(e.target.value);
-    const filteredInstruments = InstrumentsList.filter((instrument) => {
-      return instrument.toLowerCase().includes(e.target.value.toLowerCase());
-    }).splice(0, 30);
+    const filteredInstruments = list
+      .filter((instrument) => {
+        return instrument.toLowerCase().includes(e.target.value.toLowerCase());
+      })
+      .splice(0, 30);
     setResults(filteredInstruments);
   };
 

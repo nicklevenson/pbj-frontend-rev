@@ -61,11 +61,15 @@ const Swipe = () => {
 
   const nextCard = () => {
     if (activeIndex === recs.length - 1) {
-      this.resetIndex();
+      resetIndex();
     } else {
       animateCardIn();
       setActiveIndex((prevState) => prevState + 1);
     }
+  };
+
+  const resetIndex = () => {
+    setActiveIndex(0);
   };
 
   return (
