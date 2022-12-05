@@ -85,7 +85,7 @@ const Swipe = () => {
           >
             <PreviewUserCard shownUser={shownUser} currentUser={currentUser} />
           </Animated>
-          <div className="fixed bottom-20 z-50 h-16 px-16 text-2xl w-full">
+          <div className="fixed bottom-16 z-8 h-16 px-16 text-2xl w-full bg-gray-200 bg-opacity-50">
             <div className="mt-2 w-full flex flex-row justify-between">
               <ConnectForm
                 currentUser={currentUser}

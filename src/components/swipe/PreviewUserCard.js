@@ -9,9 +9,10 @@ import ConnectedUsers from "../user/ConnectedUsers";
 import LocationBanner from "../user/LocationBanner";
 import Bio from "../user/Bio";
 
-const PreviewUserCard = ({ currentUser, shownUser }) => {
+const PreviewUserCard = ({ shownUser }) => {
   console.log(shownUser);
   const info = shownUser.info;
+  const distance = shownUser.distance;
   const connections = shownUser.connections;
   const {
     instruments,
@@ -29,7 +30,7 @@ const PreviewUserCard = ({ currentUser, shownUser }) => {
         <div className="mx-2 my-4">
           <UsernameLink userInfo={info} />
           <ConnectedUsers connections={connections} />
-          <LocationBanner location={info.location} />
+          <LocationBanner location={info.location} distance={distance} />
           <div className="my-6"></div>
           <Bio bio={info.bio} />
           <div className="my-6"></div>

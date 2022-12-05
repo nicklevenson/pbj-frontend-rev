@@ -22,12 +22,12 @@ const GenreSelection = ({ list, setGenresCallback }) => {
   };
 
   return (
-    <div>
+    <div className="w-64 mx-auto">
       <label htmlFor="genres filter">Genres</label>
       <br />
       <input
         name="genres filter"
-        className="filter-input"
+        className="border border-solid rounded p-2 w-full"
         placeholder="Search for Genres"
         value={inputQuery}
         onInput={(e) => handleInputQuery(e)}
@@ -36,10 +36,17 @@ const GenreSelection = ({ list, setGenresCallback }) => {
         type="text"
       />
 
-      <div onClick={(e) => handleClick(e)}>
+      <div
+        onClick={(e) => handleClick(e)}
+        className="bg-gray-200 text-left overflow-y-scroll max-h-32 w-full"
+      >
         {inputQuery !== ""
           ? results.map((result) => {
-              return <div>{result}</div>;
+              return (
+                <div className="p-2  border-b broder border-gray-300">
+                  {result}
+                </div>
+              );
             })
           : null}
       </div>

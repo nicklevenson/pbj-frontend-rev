@@ -22,12 +22,12 @@ const InstrumentSelection = ({ list, setInstrumentsCallback }) => {
   };
 
   return (
-    <div className="instruments-filter">
+    <div className="w-64 mx-auto">
       <label htmlFor="instruments filter">Instruments</label>
       <br />
       <input
         name="instruments filter"
-        className="filter-input"
+        className="border border-solid rounded p-2 w-full"
         placeholder="Search for Instruments"
         value={inputQuery}
         onInput={(e) => handleInputQuery(e)}
@@ -37,12 +37,16 @@ const InstrumentSelection = ({ list, setInstrumentsCallback }) => {
       />
 
       <div
-        className="instruments-results options"
+        className="bg-gray-200 text-left overflow-y-scroll max-h-32 w-full"
         onClick={(e) => handleClick(e)}
       >
         {inputQuery !== ""
           ? results.map((result) => {
-              return <div>{result}</div>;
+              return (
+                <div className="p-2 border-b broder border-gray-300">
+                  {result}
+                </div>
+              );
             })
           : null}
       </div>
