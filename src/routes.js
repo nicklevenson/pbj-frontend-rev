@@ -2,6 +2,7 @@ import App from "./App";
 import LoginCard from "./components/LoginCard";
 import Swipe from "./components/swipe/Swipe";
 import Messages from "./components/messages/Messages";
+import MessageRoom from "./components/messages/MessageRoom";
 
 const routes = [
   {
@@ -15,6 +16,10 @@ const routes = [
       {
         path: "/messages",
         element: <Messages />,
+      },
+      {
+        path: "/messages/:roomId",
+        element: <MessageRoom />,
       },
     ],
   },

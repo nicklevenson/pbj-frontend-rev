@@ -73,7 +73,7 @@ const Swipe = () => {
   };
 
   return (
-    <div className="overflow-y-scroll h-screen pt-8 pb-44">
+    <div>
       <Filter fetchRecs={fetchRecs} />
       {currentUser && shownUser && (
         <div>

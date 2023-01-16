@@ -83,7 +83,9 @@ function App() {
     <div>
       <div className="mt-8 min-h-screen">
         {Authentication.loggedIn() && (
-          <Outlet context={{ currentUser, notifications, chatrooms }} />
+          <div className="overflow-y-scroll h-screen pt-8 pb-44">
+            <Outlet context={{ currentUser, notifications, chatrooms }} />
+          </div>
         )}
         {!Authentication.loggedIn() && <Navigate to="/login" />}
       </div>
