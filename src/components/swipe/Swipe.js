@@ -8,7 +8,7 @@ import { Animated } from "react-animated-css";
 import Filter from "./Filter";
 
 const Swipe = () => {
-  const [currentUser] = useOutletContext();
+  const { currentUser } = useOutletContext();
   const [recs, setRecs] = useState([]);
   const [activeIndex, setActiveIndex] = useState(0);
   const [shownUser, setShownUser] = useState(null);

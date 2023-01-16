@@ -10,7 +10,6 @@ import LocationBanner from "../user/LocationBanner";
 import Bio from "../user/Bio";
 
 const PreviewUserCard = ({ shownUser }) => {
-  console.log(shownUser);
   const info = shownUser.info;
   const distance = shownUser.distance;
   const connections = shownUser.connections;

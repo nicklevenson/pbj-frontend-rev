@@ -4,6 +4,7 @@ import { MdOutlineSwipe } from "react-icons/md";
 import { FiUsers } from "react-icons/fi";
 import { AiOutlineMessage } from "react-icons/ai";
 import { FiLogOut } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 const Nav = ({ notifications }) => {
   const unreadNotifications = () => {
@@ -20,12 +21,16 @@ const Nav = ({ notifications }) => {
         <span className="text-xl">PBJ</span>
       </div>
       <div className="flex flex-row absolute bottom-0 h-16 w-full justify-between px-4 bg-gray-300 items-center">
-        <span>
-          <MdOutlineSwipe size={"2rem"} />
-        </span>
-        <span>
-          <AiOutlineMessage size={"2rem"} />
-        </span>
+        <Link to="swipe">
+          <span>
+            <MdOutlineSwipe size={"2rem"} />
+          </span>
+        </Link>
+        <Link to="messages">
+          <span>
+            <AiOutlineMessage size={"2rem"} />
+          </span>
+        </Link>
         <span>
           <FiUsers size={"2rem"} />
         </span>

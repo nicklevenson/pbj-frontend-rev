@@ -1,6 +1,7 @@
 import App from "./App";
 import LoginCard from "./components/LoginCard";
 import Swipe from "./components/swipe/Swipe";
+import Messages from "./components/messages/Messages";
 
 const routes = [
   {
@@ -10,6 +11,10 @@ const routes = [
       {
         path: "/swipe",
         element: <Swipe />,
+      },
+      {
+        path: "/messages",
+        element: <Messages />,
       },
     ],
   },

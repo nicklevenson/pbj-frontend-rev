@@ -3,6 +3,7 @@ import Nav from "./components/Nav";
 import { useState, useEffect } from "react";
 import Authentication from "./authentication";
 import ActionCable from "actioncable";
+import camelize from "camelize";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -61,8 +62,8 @@ function App() {
   };
 
   const handleChatroomReception = (chatrooms) => {
-    console.log(chatrooms);
-    setChatrooms(chatrooms);
+    console.log(camelize(chatrooms));
+    setChatrooms(camelize(chatrooms));
   };
 
   const createChatroomSubscription = () => {
@@ -82,7 +83,7 @@ function App() {
     <div>
       <div className="mt-8 min-h-screen">
         {Authentication.loggedIn() && (
-          <Outlet context={[currentUser, notifications]} />
+          <Outlet context={{ currentUser, notifications, chatrooms }} />
         )}
         {!Authentication.loggedIn() && <Navigate to="/login" />}
       </div>
