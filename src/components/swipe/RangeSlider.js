@@ -2,7 +2,7 @@ import "../../style/slider.css";
 const RangeSlider = ({ rangeSlider, changeRangeSlider }) => {
   return (
     <div className="slider-container">
-      <div>Distance</div>
+      <div className="font-bold">Range</div>
       <label htmlFor="range slider"></label>
       <input
         className="range-slider"

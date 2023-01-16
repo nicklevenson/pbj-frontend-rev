@@ -23,7 +23,9 @@ const InstrumentSelection = ({ list, setInstrumentsCallback }) => {
 
   return (
     <div className="w-64 mx-auto">
-      <label htmlFor="instruments filter">Instruments</label>
+      <label className="font-bold" htmlFor="instruments filter">
+        Instruments
+      </label>
       <br />
       <input
         name="instruments filter"
