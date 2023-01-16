@@ -5,7 +5,15 @@ import { FiUsers } from "react-icons/fi";
 import { AiOutlineMessage } from "react-icons/ai";
 import { FiLogOut } from "react-icons/fi";
 
-const Nav = () => {
+const Nav = ({ notifications }) => {
+  const unreadNotifications = () => {
+    return notifications.filter((notification) => notification.read === false);
+  };
+
+  const hasUnreadNotifications = () => {
+    return unreadNotifications().length > 0;
+  };
+
   return (
     <div>
       <div className="flex flex-row justify-center absolute w-full top-0 bg-gray-300 h-12 items-center">
@@ -21,8 +29,16 @@ const Nav = () => {
         <span>
           <FiUsers size={"2rem"} />
         </span>
-        <span>
+        <span className="relative">
           <IoNotificationsOutline size={"2rem"} />
+          {hasUnreadNotifications() && (
+            <div className="absolute -top-2 -right-2">
+              {hasUnreadNotifications() && notifications.length}
+            </div>
+          )}
+          <div className="absolute -top-2 -right-2 bg-red-400 rounded-full text-sm px-1">
+            {notifications.length}
+          </div>
         </span>
         <span>
           <FiLogOut size={"2rem"} />

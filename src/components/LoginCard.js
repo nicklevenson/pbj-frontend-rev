@@ -37,6 +37,11 @@ const LoginCard = () => {
             </div>
           </div>
         </a>
+        <a href={`${process.env.REACT_APP_BACKEND_URL}/authenticate-google`}>
+          <div className="login spotify">
+            <div>Continue With Google</div>
+          </div>
+        </a>
       </div>
     </div>
   );
