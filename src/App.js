@@ -6,8 +6,10 @@ import ActionCable from "actioncable";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
-  const [cable, setCable] = useState(null);
+  const [notificationCable, setNotificationCable] = useState(null);
   const [notifications, setNotifications] = useState([]);
+  const [chatroomCable, setChatroomCable] = useState(null);
+  const [chatrooms, setChatrooms] = useState([]);
 
   useEffect(() => {
     if (!currentUser && Authentication.loggedIn()) {
@@ -17,12 +19,19 @@ function App() {
 
   useEffect(() => {
     if (currentUser) {
-      setCable(
+      setNotificationCable(
         ActionCable.createConsumer(
           `${process.env.REACT_APP_BACKEND_URL}/notification_stream`
         )
       );
       createNotificationSubscription();
+
+      setChatroomCable(
+        ActionCable.createConsumer(
+          `${process.env.REACT_APP_BACKEND_URL}/chatroom_stream`
+        )
+      );
+      createChatroomSubscription();
     }
   }, [currentUser]);
 
@@ -34,17 +43,35 @@ function App() {
     }
   };
 
-  const handleConnection = (notifications) => {
+  const handleNotificationReception = (notifications) => {
     setNotifications(notifications);
   };
 
   const createNotificationSubscription = () => {
-    if (cable) {
-      cable.subscriptions.create(
-        { channel: "NotificationStream", id: `${currentUser.id}` },
+    if (notificationCable) {
+      notificationCable.subscriptions.create(
+        { channel: "NotificationStreamChannel", id: `${currentUser.id}` },
         {
           received: (notifications) => {
-            handleConnection(notifications);
+            handleNotificationReception(notifications);
+          },
+        }
+      );
+    }
+  };
+
+  const handleChatroomReception = (chatrooms) => {
+    console.log(chatrooms);
+    setChatrooms(chatrooms);
+  };
+
+  const createChatroomSubscription = () => {
+    if (chatroomCable) {
+      chatroomCable.subscriptions.create(
+        { channel: "ChatroomStreamChannel", id: `${currentUser.id}` },
+        {
+          received: (chatrooms) => {
+            handleChatroomReception(chatrooms);
           },
         }
       );
