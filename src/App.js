@@ -10,6 +10,7 @@ function App() {
   const [notificationCable, setNotificationCable] = useState(null);
   const [notifications, setNotifications] = useState([]);
   const [chatroomCable, setChatroomCable] = useState(null);
+  const [chatroomConnection, setChatroomConnection] = useState(null);
   const [chatrooms, setChatrooms] = useState([]);
 
   useEffect(() => {
@@ -40,7 +41,7 @@ function App() {
     const fetchedUser = await Authentication.fetchUser();
 
     if (fetchedUser) {
-      setCurrentUser(fetchedUser);
+      setCurrentUser(camelize(fetchedUser));
     }
   };
 
@@ -68,14 +69,22 @@ function App() {
 
   const createChatroomSubscription = () => {
     if (chatroomCable) {
-      chatroomCable.subscriptions.create(
+      const sub = chatroomCable.subscriptions.create(
         { channel: "ChatroomStreamChannel", id: `${currentUser.id}` },
         {
           received: (chatrooms) => {
             handleChatroomReception(chatrooms);
           },
+          newMessage(chatroomId, content) {
+            return this.perform("new_message", {
+              id: `${currentUser.id}`,
+              chatroom_id: chatroomId,
+              content: content,
+            });
+          },
         }
       );
+      setChatroomConnection(sub);
     }
   };
 
@@ -84,7 +93,14 @@ function App() {
       <div className="mt-8 min-h-screen">
         {Authentication.loggedIn() && (
           <div className="overflow-y-scroll h-screen pt-8 pb-44">
-            <Outlet context={{ currentUser, notifications, chatrooms }} />
+            <Outlet
+              context={{
+                currentUser,
+                notifications,
+                chatrooms,
+                chatroomConnection,
+              }}
+            />
           </div>
         )}
         {!Authentication.loggedIn() && <Navigate to="/login" />}
