@@ -7,19 +7,19 @@ const ConnectForm = ({
   handleConnectionReject,
 }) => {
   const isPendingOutgoingRequest = () => {
-    return currentUser.connections.pending_connections
+    return currentUser.connections.pendingConnections
       .map((u) => u.id)
       .includes(shownUser.info.id);
   };
 
   const isPendingIncomingRequest = () => {
-    return currentUser.connections.incoming_connections
+    return currentUser.connections.incomingConnections
       .map((user) => user.id)
       .includes(shownUser.info.id);
   };
 
   const isAlreadyConnected = () => {
-    return currentUser.connections.connected_users
+    return currentUser.connections.connectedUsers
       .map((user) => user.id)
       .includes(shownUser.info.id);
   };

@@ -6,7 +6,7 @@ import ConnectForm from "../user/ConnectForm";
 import NextUserButton from "./NextUserButton";
 import { Animated } from "react-animated-css";
 import Filter from "./Filter";
-
+import camelize from "camelize";
 const Swipe = () => {
   const { currentUser } = useOutletContext();
   const [recs, setRecs] = useState([]);
@@ -26,7 +26,7 @@ const Swipe = () => {
     const id = recs[activeIndex];
     if (id) {
       const response = await UserApi.fetchSupportingInfo(id);
-      const info = response.supporting_user_info;
+      const info = camelize(response.supporting_user_info);
       setShownUser(info);
     }
   };

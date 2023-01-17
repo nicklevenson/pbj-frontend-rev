@@ -5,7 +5,7 @@ const ConnectedUsers = ({ connections }) => {
       // onClick={this.toggleConnectionsModal}
       >
         {/* <Icon name="user" /> */}
-        {connections.connected_users.length || "0"} Connections
+        {connections.connectedUsers.length || "0"} Connections
       </button>
     </div>
   );

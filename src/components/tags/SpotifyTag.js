@@ -3,7 +3,7 @@ const SpotifyTag = ({ tag }) => {
     <div className="flex-shrink-0 relative">
       <img
         className="w-28 h-28 object-cover"
-        src={tag.image_url}
+        src={tag.imageUrl}
         alt="spotify-artist"
       ></img>
       <div className="absolute top-0 text-center text-white w-28 bg-gray-500 bg-opacity-25 h-28">

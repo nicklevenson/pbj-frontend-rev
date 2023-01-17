@@ -13,13 +13,7 @@ const PreviewUserCard = ({ shownUser }) => {
   const info = shownUser.info;
   const distance = shownUser.distance;
   const connections = shownUser.connections;
-  const {
-    instruments,
-    genres,
-    spotify,
-    generic,
-    similar_tags,
-  } = shownUser.tags;
+  const { instruments, genres, spotify, generic, similarTags } = shownUser.tags;
 
   return (
     <div>
@@ -33,7 +27,7 @@ const PreviewUserCard = ({ shownUser }) => {
           <div className="my-6"></div>
           <Bio bio={info.bio} />
           <div className="my-6"></div>
-          <SimilarTags similarTags={similar_tags} />
+          <SimilarTags similarTags={similarTags} />
           <div className="my-6"></div>
           <Instruments instruments={instruments} />
           <div className="my-6"></div>
