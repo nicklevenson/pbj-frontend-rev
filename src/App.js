@@ -82,6 +82,12 @@ function App() {
               content: content,
             });
           },
+          markRead(chatroomId) {
+            return this.perform("mark_read", {
+              id: `${currentUser.id}`,
+              chatroom_id: chatroomId,
+            });
+          },
         }
       );
       setChatroomConnection(sub);

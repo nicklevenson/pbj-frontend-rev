@@ -25,7 +25,9 @@ const Messages = () => {
                       {chatroom.otherUserInfo.info.username}
                     </div>
                     <div className="text-gray-500 italic">
-                      {chatroom.messages[0].content.substring(0, 10)}
+                      {chatroom.messages[
+                        chatroom.messages.length - 1
+                      ].content.substring(0, 10)}
                     </div>
                   </div>
                 </div>

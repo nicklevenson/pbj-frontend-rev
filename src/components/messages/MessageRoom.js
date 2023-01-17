@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import { useOutletContext, useParams, Link } from "react-router-dom";
 import { BsChevronLeft } from "react-icons/bs";
 
@@ -7,15 +7,35 @@ const MessageRoom = () => {
   const { chatrooms } = useOutletContext();
   const { chatroomConnection } = useOutletContext();
   const { roomId } = useParams();
+  const [newMessage, setNewMessage] = useState("");
 
   const chatroom = chatrooms.find(
     (chatroom) => chatroom.id === parseInt(roomId)
   );
-  // console.log(chatroomConnection?.newMessage(roomId, "hello"));
+
+  useEffect(() => {
+    const container = document.getElementsByClassName("messages-container")[0];
+    if (container) {
+      container.scrollTop = container.scrollHeight;
+    }
+  }, [chatrooms]);
+
+  useEffect(() => {
+    if (chatroom && chatroom?.hasUnread) {
+      console.log("read");
+      chatroomConnection.markRead(roomId);
+    }
+  }, [chatroom]);
+
+  const sendMessage = () => {
+    chatroomConnection?.newMessage(roomId, newMessage);
+    setNewMessage("");
+  };
+
   return (
     <div className="px-4 h-full">
       {chatroom && (
-        <div className="h-full">
+        <div className="h-[95%]">
           <div className="flex items-center gap-4 mb-4">
             <Link to="/messages">
               <BsChevronLeft size={"2rem"} />
@@ -30,13 +50,13 @@ const MessageRoom = () => {
             </div>
           </div>
           <hr />
-          <div className="h-[90%] overflow-y-scroll mb-32 flex flex-row flex-wrap">
+          <div className="messages-container h-full overflow-y-scroll flex flex-row flex-wrap">
             {chatroom.messages.map((message) => {
               if (message.userId === currentUser.id) {
                 return (
                   <div className="ml-auto flex items-center">
                     <div>
-                      <div className="bg-blue-200 p-2 rounded m-2">
+                      <div className="bg-blue-200 p-2 rounded m-2 w-max ml-auto">
                         {message.content}
                       </div>
                       <div className="text-xs text-gray-400">
@@ -52,13 +72,13 @@ const MessageRoom = () => {
                 );
               } else {
                 return (
-                  <div className="mr-auto flex items-center w-full">
+                  <div className="mr-auto flex items-center">
                     <img
                       src={chatroom.otherUserInfo.info.providerImage}
                       className="rounded-full h-12"
                     />
                     <div>
-                      <div className="bg-blue-200 p-2 rounded m-2">
+                      <div className="bg-blue-200 p-2 rounded m-2 w-max">
                         {message.content}
                       </div>
                       <div className="text-xs text-gray-400">
@@ -69,6 +89,20 @@ const MessageRoom = () => {
                 );
               }
             })}
+          </div>
+          <div className="flex justify-center bg-white w-full mt-1">
+            <input
+              placeholder="chat"
+              value={newMessage}
+              onChange={(e) => setNewMessage(e.target.value)}
+              className="border rounded p-2 bg-gray-200 h-10"
+            />
+            <button
+              onClick={sendMessage}
+              className="bg-blue-300 p-2 rounded ml-4 h-10"
+            >
+              Send
+            </button>
           </div>
         </div>
       )}
