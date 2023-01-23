@@ -3,6 +3,7 @@ import LoginCard from "./components/LoginCard";
 import Swipe from "./components/swipe/Swipe";
 import Messages from "./components/messages/Messages";
 import MessageRoom from "./components/messages/MessageRoom";
+import Notifications from "./components/notifications/Notifications";
 
 const routes = [
   {
@@ -20,6 +21,10 @@ const routes = [
       {
         path: "/messages/:roomId",
         element: <MessageRoom />,
+      },
+      {
+        path: "/notifications",
+        element: <Notifications />,
       },
     ],
   },

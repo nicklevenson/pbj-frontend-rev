@@ -1,8 +1,9 @@
 import React from "react";
 import { useOutletContext, Link } from "react-router-dom";
+import UserPhoto from "../user/UserPhoto";
 const Messages = () => {
   const { chatrooms } = useOutletContext();
-  console.log(chatrooms);
+
   return (
     <div className="px-4">
       <h1 className="text-xl mb-4 font-bold">Messages</h1>
@@ -16,10 +17,10 @@ const Messages = () => {
                     chatroom.hasUnread ? "bg-gray-400" : ""
                   }`}
                 >
-                  <img
-                    src={chatroom.otherUserInfo.info.providerImage}
-                    className="rounded-full h-12"
-                  />
+                  <div className="rounded-full h-12 w-12 overflow-hidden">
+                    <UserPhoto userInfo={chatroom.otherUserInfo.info} />
+                  </div>
+
                   <div className="ml-2">
                     <div className="font-bold">
                       {chatroom.otherUserInfo.info.username}
@@ -27,10 +28,11 @@ const Messages = () => {
                     <div className="text-gray-500 italic">
                       {chatroom.messages[
                         chatroom.messages.length - 1
-                      ].content.substring(0, 10)}
+                      ]?.content.substring(0, 10)}
                     </div>
                   </div>
                 </div>
+                <hr />
               </Link>
             );
           })}

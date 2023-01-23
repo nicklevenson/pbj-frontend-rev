@@ -14,8 +14,14 @@ const Swipe = () => {
   const [shownUser, setShownUser] = useState(null);
   const [cardInTransition, setCardInTransition] = useState(false);
 
+  const getRecentRange = () => {
+    return localStorage.rangeFilter || 500;
+  };
+
   useLayoutEffect(() => {
-    fetchRecs();
+    fetchRecs({
+      range: getRecentRange(),
+    });
   }, []);
 
   useEffect(() => {

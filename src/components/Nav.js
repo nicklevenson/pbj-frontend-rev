@@ -34,17 +34,19 @@ const Nav = ({ notifications }) => {
         <span>
           <FiUsers size={"2rem"} />
         </span>
-        <span className="relative">
-          <IoNotificationsOutline size={"2rem"} />
-          {hasUnreadNotifications() && (
-            <div className="absolute -top-2 -right-2">
-              {hasUnreadNotifications() && notifications.length}
+        <Link to="notifications">
+          <span className="relative">
+            <IoNotificationsOutline size={"2rem"} />
+            {hasUnreadNotifications() && (
+              <div className="absolute -top-2 -right-2">
+                {hasUnreadNotifications() && notifications.length}
+              </div>
+            )}
+            <div className="absolute -top-2 -right-2 bg-red-400 rounded-full text-sm px-1">
+              {notifications.length}
             </div>
-          )}
-          <div className="absolute -top-2 -right-2 bg-red-400 rounded-full text-sm px-1">
-            {notifications.length}
-          </div>
-        </span>
+          </span>
+        </Link>
         <span>
           <FiLogOut size={"2rem"} />
         </span>

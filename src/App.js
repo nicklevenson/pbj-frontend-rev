@@ -46,7 +46,7 @@ function App() {
   };
 
   const handleNotificationReception = (notifications) => {
-    setNotifications(notifications);
+    setNotifications(camelize(notifications));
   };
 
   const createNotificationSubscription = () => {
@@ -63,7 +63,6 @@ function App() {
   };
 
   const handleChatroomReception = (chatrooms) => {
-    console.log(camelize(chatrooms));
     setChatrooms(camelize(chatrooms));
   };
 

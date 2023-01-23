@@ -9,7 +9,6 @@ import FilterSelections from "./FilterSelections";
 
 const Filter = ({ fetchRecs }) => {
   const [displayed, setDisplayed] = useState(false);
-  const [rangeSlider, setRangeSlider] = useState(500);
   const [instrumentsList, setInstrumentsList] = useState([]);
   const [genresList, setGenresList] = useState([]);
   const [instruments, setInstruments] = useState([]);
@@ -18,6 +17,12 @@ const Filter = ({ fetchRecs }) => {
   useLayoutEffect(() => {
     setInstrumentsAndGenres();
   }, []);
+
+  const getRecentRange = () => {
+    return localStorage.rangeFilter || 500;
+  };
+
+  const [rangeSlider, setRangeSlider] = useState(getRecentRange());
 
   const setInstrumentsAndGenres = async () => {
     const list = await ListsApi.getInstrumentsAndGenres();
@@ -37,6 +42,7 @@ const Filter = ({ fetchRecs }) => {
       genres: genres.length > 0 ? genres : null,
     });
     setDisplayed(false);
+    localStorage.setItem("rangeFilter", rangeSlider);
   };
 
   const setInstrumentsCallback = (instrument) => {

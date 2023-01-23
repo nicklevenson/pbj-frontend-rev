@@ -50,11 +50,11 @@ const MessageRoom = () => {
             </div>
           </div>
           <hr />
-          <div className="messages-container h-full overflow-y-scroll flex flex-row flex-wrap">
+          <div className="messages-container h-full overflow-y-scroll flex flex-row flex-wrap px-6 items-start">
             {chatroom.messages.map((message) => {
               if (message.userId === currentUser.id) {
                 return (
-                  <div className="ml-auto flex items-center">
+                  <div className="w-full flex items-center justify-end">
                     <div>
                       <div className="bg-blue-200 p-2 rounded m-2 w-max ml-auto">
                         {message.content}
@@ -72,7 +72,7 @@ const MessageRoom = () => {
                 );
               } else {
                 return (
-                  <div className="mr-auto flex items-center">
+                  <div className="w-full flex items-center">
                     <img
                       src={chatroom.otherUserInfo.info.providerImage}
                       className="rounded-full h-12"
