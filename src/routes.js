@@ -4,6 +4,7 @@ import Swipe from "./components/swipe/Swipe";
 import Messages from "./components/messages/Messages";
 import MessageRoom from "./components/messages/MessageRoom";
 import Notifications from "./components/notifications/Notifications";
+import ShowUser from "./components/user/ShowUser";
 
 const routes = [
   {
@@ -25,6 +26,10 @@ const routes = [
       {
         path: "/notifications",
         element: <Notifications />,
+      },
+      {
+        path: "/users/:shownUserId",
+        element: <ShowUser />,
       },
     ],
   },

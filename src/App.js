@@ -9,6 +9,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [notificationCable, setNotificationCable] = useState(null);
   const [notifications, setNotifications] = useState([]);
+  const [notificationConnection, setNotificationConnection] = useState(null);
   const [chatroomCable, setChatroomCable] = useState(null);
   const [chatroomConnection, setChatroomConnection] = useState(null);
   const [chatrooms, setChatrooms] = useState([]);
@@ -51,14 +52,21 @@ function App() {
 
   const createNotificationSubscription = () => {
     if (notificationCable) {
-      notificationCable.subscriptions.create(
+      const sub = notificationCable.subscriptions.create(
         { channel: "NotificationStreamChannel", id: `${currentUser.id}` },
         {
           received: (notifications) => {
             handleNotificationReception(notifications);
           },
+          markRead(notificationId) {
+            return this.perform("mark_read", {
+              id: `${currentUser.id}`,
+              notification_id: notificationId,
+            });
+          },
         }
       );
+      setNotificationConnection(sub);
     }
   };
 
@@ -102,6 +110,7 @@ function App() {
               context={{
                 currentUser,
                 notifications,
+                notificationConnection,
                 chatrooms,
                 chatroomConnection,
               }}

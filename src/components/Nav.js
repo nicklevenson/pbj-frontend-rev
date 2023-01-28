@@ -8,7 +8,9 @@ import { Link } from "react-router-dom";
 
 const Nav = ({ notifications }) => {
   const unreadNotifications = () => {
-    return notifications.filter((notification) => notification.read === false);
+    return notifications.filter(
+      ({ notification }) => notification.read !== true
+    );
   };
 
   const hasUnreadNotifications = () => {
@@ -38,13 +40,10 @@ const Nav = ({ notifications }) => {
           <span className="relative">
             <IoNotificationsOutline size={"2rem"} />
             {hasUnreadNotifications() && (
-              <div className="absolute -top-2 -right-2">
-                {hasUnreadNotifications() && notifications.length}
+              <div className="absolute -top-2 -right-2 bg-red-400 rounded-full text-sm px-1">
+                {unreadNotifications().length}
               </div>
             )}
-            <div className="absolute -top-2 -right-2 bg-red-400 rounded-full text-sm px-1">
-              {notifications.length}
-            </div>
           </span>
         </Link>
         <span>

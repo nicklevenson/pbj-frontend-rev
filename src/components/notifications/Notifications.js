@@ -2,6 +2,7 @@ import { useOutletContext, Link } from "react-router-dom";
 
 const Notifications = () => {
   const { notifications } = useOutletContext();
+  const { notificationConnection } = useOutletContext();
 
   const renderNotifications = () => {
     return notifications.map(({ notification }) => {
@@ -9,10 +10,17 @@ const Notifications = () => {
     });
   };
 
+  const markRead = (notificationId) => {
+    notificationConnection.markRead(notificationId);
+  };
+
   const renderNotification = (notification) => {
     if (notification.involvedUser) {
       return (
-        <Link to={`/users/${notification.involvedUser.info.id}`}>
+        <Link
+          to={`/users/${notification.involvedUser.info.id}`}
+          onClick={() => markRead(notification.id)}
+        >
           <div
             className={`border-b border-black p-4 ${
               notification.read ? "" : "bg-gray-200"
