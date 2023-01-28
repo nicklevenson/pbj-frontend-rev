@@ -7,29 +7,19 @@ const ConnectForm = ({
   handleConnectionReject,
 }) => {
   const isPendingOutgoingRequest = () => {
-    return currentUser.connections.pendingConnections
-      .map((u) => u.id)
-      .includes(shownUser.info.id);
+    return shownUser.connectionStatus === "pending";
   };
 
   const isPendingIncomingRequest = () => {
-    return currentUser.connections.incomingConnections
-      .map((user) => user.id)
-      .includes(shownUser.info.id);
+    return shownUser.connectionStatus === "incoming request";
   };
 
   const isAlreadyConnected = () => {
-    return currentUser.connections.connectedUsers
-      .map((user) => user.id)
-      .includes(shownUser.info.id);
+    return shownUser.connectionStatus === "connected";
   };
 
   const noConnection = () => {
-    return (
-      !isPendingOutgoingRequest() &&
-      !isPendingIncomingRequest() &&
-      !isAlreadyConnected()
-    );
+    return shownUser.connectionStatus === "unconnected";
   };
 
   return (

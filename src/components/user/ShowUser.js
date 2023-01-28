@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PreviewUserCard from "../swipe/PreviewUserCard";
 import ConnectForm from "./ConnectForm";
-import { useOutletContext, useParams } from "react-router-dom";
+import { useOutletContext, useParams, useNavigate } from "react-router-dom";
 import UserApi from "../../api/user-api";
 import camelize from "camelize";
 
@@ -9,7 +9,9 @@ const ShowUser = () => {
   const { currentUser } = useOutletContext();
   const [shownUser, setShownUser] = useState(null);
   const { shownUserId } = useParams();
+  const navigate = useNavigate();
 
+  console.log(shownUser);
   useEffect(() => {
     fetchShownUser();
   }, []);
@@ -22,14 +24,18 @@ const ShowUser = () => {
     }
   };
 
-  const handleMessageLink = () => {};
+  const handleMessageLink = () => {
+    navigate(`/messages/${shownUser.chatroomId}`);
+  };
 
   const handleConnectionRequest = async () => {
     await UserApi.requestConnection(shownUser.info.id);
+    fetchShownUser();
   };
 
   const handleConnectionAccept = async () => {
     await UserApi.acceptConnection(shownUser.info.id);
+    fetchShownUser();
   };
 
   const handleConnectionReject = () => {};
