@@ -22,7 +22,6 @@ const MessageRoom = () => {
 
   useEffect(() => {
     if (chatroom && chatroom?.hasUnread) {
-      console.log("read");
       chatroomConnection.markRead(roomId);
     }
   }, [chatroom]);
@@ -50,7 +49,7 @@ const MessageRoom = () => {
             </div>
           </div>
           <hr />
-          <div className="messages-container h-full overflow-y-scroll flex flex-row flex-wrap px-6 items-start">
+          <div className="messages-container h-full overflow-y-scroll px-6">
             {chatroom.messages.map((message) => {
               if (message.userId === currentUser.id) {
                 return (
