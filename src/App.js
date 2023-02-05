@@ -109,6 +109,7 @@ function App() {
             <Outlet
               context={{
                 currentUser,
+                attemptFetchUser,
                 notifications,
                 notificationConnection,
                 chatrooms,

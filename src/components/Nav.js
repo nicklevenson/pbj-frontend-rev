@@ -33,9 +33,11 @@ const Nav = ({ notifications }) => {
             <AiOutlineMessage size={"2rem"} />
           </span>
         </Link>
-        <span>
-          <FiUsers size={"2rem"} />
-        </span>
+        <Link to="connections">
+          <span>
+            <FiUsers size={"2rem"} />
+          </span>
+        </Link>
         <Link to="notifications">
           <span className="relative">
             <IoNotificationsOutline size={"2rem"} />
