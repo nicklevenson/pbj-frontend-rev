@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { IoNotificationsOutline } from "react-icons/io5";
 import { MdOutlineSwipe } from "react-icons/md";
 import { FiUsers } from "react-icons/fi";
 import { AiOutlineMessage } from "react-icons/ai";
 import { FiLogOut } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import LogoutModal from "./LogoutModal";
 
-const Nav = ({ notifications }) => {
+const Nav = ({ notifications, logoutUser }) => {
+  const [logoutPrompt, setLogoutPrompt] = useState(false);
+
   const unreadNotifications = () => {
     return notifications.filter(
       ({ notification }) => notification.read !== true
@@ -48,10 +51,17 @@ const Nav = ({ notifications }) => {
             )}
           </span>
         </Link>
-        <span>
+        <span onClick={() => setLogoutPrompt((prev) => !prev)}>
           <FiLogOut size={"2rem"} />
         </span>
       </div>
+
+      {logoutPrompt && (
+        <LogoutModal
+          setLogoutPrompt={setLogoutPrompt}
+          logoutUser={logoutUser}
+        />
+      )}
     </div>
   );
 };

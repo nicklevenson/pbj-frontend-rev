@@ -8,6 +8,10 @@ class Authentication {
   static fetchUser() {
     return UserApi.fetchUser();
   }
+
+  static logout() {
+    sessionStorage.clear();
+  }
 }
 
 export default Authentication;

@@ -46,6 +46,11 @@ function App() {
     }
   };
 
+  const logoutUser = () => {
+    Authentication.logout();
+    setCurrentUser(null);
+  };
+
   const handleNotificationReception = (notifications) => {
     setNotifications(camelize(notifications));
   };
@@ -120,7 +125,7 @@ function App() {
         )}
         {!Authentication.loggedIn() && <Navigate to="/login" />}
       </div>
-      <Nav notifications={notifications} />
+      <Nav notifications={notifications} logoutUser={logoutUser} />
     </div>
   );
 }
