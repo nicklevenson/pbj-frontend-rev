@@ -6,6 +6,7 @@ import MessageRoom from "./components/messages/MessageRoom";
 import Notifications from "./components/notifications/Notifications";
 import ShowUser from "./components/user/ShowUser";
 import Connections from "./components/connections/Connections";
+import Profile from "./components/profile/Profile";
 
 const routes = [
   {
@@ -35,6 +36,10 @@ const routes = [
       {
         path: "/connections",
         element: <Connections />,
+      },
+      {
+        path: "/profile",
+        element: <Profile />,
       },
     ],
   },

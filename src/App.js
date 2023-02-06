@@ -115,6 +115,7 @@ function App() {
               context={{
                 currentUser,
                 attemptFetchUser,
+                logoutUser,
                 notifications,
                 notificationConnection,
                 chatrooms,
@@ -125,7 +126,7 @@ function App() {
         )}
         {!Authentication.loggedIn() && <Navigate to="/login" />}
       </div>
-      <Nav notifications={notifications} logoutUser={logoutUser} />
+      <Nav notifications={notifications} />
     </div>
   );
 }
