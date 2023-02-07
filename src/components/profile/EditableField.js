@@ -1,6 +1,12 @@
 import React from "react";
 
-const EditableField = ({ labelName, placeholder, value, setValue }) => {
+const EditableField = ({
+  labelName,
+  placeholder,
+  value,
+  setNewFormValue,
+  formKey,
+}) => {
   return (
     <div className="text-center w-[80%] mx-auto">
       <label className="font-bold" htmlFor={labelName}>
@@ -11,7 +17,7 @@ const EditableField = ({ labelName, placeholder, value, setValue }) => {
         className="border border-solid rounded p-2 w-full"
         placeholder={placeholder}
         name={labelName}
-        onChange={setValue}
+        onChange={(e) => setNewFormValue(formKey, e.target.value)}
         value={value}
       />
     </div>

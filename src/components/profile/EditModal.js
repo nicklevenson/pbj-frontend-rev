@@ -26,6 +26,7 @@ const EditModal = ({ setEditModal }) => {
     setFormValues((prev) => {
       const newValues = prev;
       newValues[key] = newValue;
+      console.log(newValues);
       return newValues;
     });
   };
@@ -43,20 +44,30 @@ const EditModal = ({ setEditModal }) => {
 
   const { instruments, genres, generic } = currentUser.tags;
 
-  const newLocation = formValues.location;
-
   return (
     <div className="absolute inset-0 bg-gray-200 w-full h-full z-10">
       <div onClick={() => setEditModal((prev) => !prev)}>
         <BsChevronLeft size={"2rem"} />
       </div>
       <div>
-        <EditableField labelName="Username" placeholder={username} />
+        <EditableField
+          labelName="Username"
+          placeholder={username}
+          formKey="username"
+          setNewFormValue={setNewFormValue}
+          value={formValues.username}
+        />
         <LocationField
           placeholder={location}
           setNewFormValue={setNewFormValue}
         />
-        <EditableField labelName="Bio" placeholder={bio} />
+        <EditableField
+          labelName="Bio"
+          placeholder={bio}
+          formKey="bio"
+          setNewFormValue={setNewFormValue}
+          value={formValues.bio}
+        />
 
         <label>
           Instruments
@@ -76,22 +87,37 @@ const EditModal = ({ setEditModal }) => {
         <EditableField
           labelName="Link to your spotify page"
           placeholder={spotifyLink}
+          formKey="spotifyLink"
+          setNewFormValue={setNewFormValue}
+          value={formValues.spotifyLink}
         />
         <EditableField
           labelName="Link to your soundcloud"
           placeholder={soundcloudLink}
+          formKey="soundcloudLink"
+          setNewFormValue={setNewFormValue}
+          value={formValues.soundcloudLink}
         />
         <EditableField
           labelName="Link to your bandcamp"
           placeholder={bandcampLink}
+          formKey="bandcampLink"
+          setNewFormValue={setNewFormValue}
+          value={formValues.bandcampLink}
         />
         <EditableField
           labelName="Link to your instagram"
           placeholder={instagramLink}
+          formKey="instagramLink"
+          setNewFormValue={setNewFormValue}
+          value={formValues.instagramLink}
         />
         <EditableField
           labelName="Link to your apple music"
           placeholder={appleMusicLink}
+          formKey="appleMusicLink"
+          setNewFormValue={setNewFormValue}
+          value={formValues.appleMusicLink}
         />
       </div>
     </div>
