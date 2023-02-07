@@ -30,11 +30,29 @@ const LocationField = ({ placeholder, setNewFormValue }) => {
   };
 
   const handleInputQuery = (e) => {
-    setInputQuery(e.target.value);
-    const filteredCities = CitiesList.filter(({ city }) => {
-      return city.toLowerCase().includes(e.target.value.toLowerCase());
+    const value = e.target.value;
+    setInputQuery(value);
+    const filteredByCities = searchLocationsByField("city", value);
+
+    const filteredByStates = searchLocationsByField("admin_name", value);
+
+    const filteredByCountries = searchLocationsByField("country", value);
+
+    const filteredResults = filteredByCities.concat(
+      filteredByStates,
+      filteredByCountries
+    );
+
+    const uniqFilteredResults = filteredResults.filter((result, index) => {
+      return filteredResults.indexOf(result) == index;
+    });
+    setResults(uniqFilteredResults);
+  };
+
+  const searchLocationsByField = (field, value) => {
+    return CitiesList.filter((location) => {
+      return location[field].toLowerCase().includes(value.toLowerCase());
     }).splice(0, 30);
-    setResults(filteredCities);
   };
 
   const formatResult = (result) => {
