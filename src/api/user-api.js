@@ -85,6 +85,23 @@ class UserApi {
 
     return request;
   };
+
+  static updateTag = (name, kind, action) => {
+    console.log("updating tag");
+
+    const request = $.ajax({
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${sessionStorage.jwt} ${sessionStorage.userId}`,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      url: `${process.env.REACT_APP_BACKEND_URL}/users/${sessionStorage.userId}/update_tag`,
+      data: JSON.stringify({ name: name, kind: kind, update_type: action }),
+    });
+
+    return request;
+  }
 }
 
 export default UserApi;

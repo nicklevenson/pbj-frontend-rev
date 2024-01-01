@@ -16,9 +16,10 @@ const EditableUserCard = ({ user }) => {
   const [editModal, setEditModal] = useState(false);
   const connections = user.connections;
   const { instruments, genres, spotify, generic } = user.tags;
+  console.log(user)
 
   return (
-    <div>
+    <div className="max-w-[600px] mx-auto">
       <div>
         <UserPhoto userInfo={user} />
         <div className="mx-2 my-4">

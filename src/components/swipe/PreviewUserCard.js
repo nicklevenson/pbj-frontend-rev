@@ -16,7 +16,7 @@ const PreviewUserCard = ({ shownUser }) => {
   const { instruments, genres, spotify, generic, similarTags } = shownUser.tags;
 
   return (
-    <div>
+    <div className="max-w-[600px] mx-auto">
       <div>
         <UserPhoto userInfo={info} />
 

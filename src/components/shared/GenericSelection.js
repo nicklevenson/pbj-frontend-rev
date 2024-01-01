@@ -1,51 +1,51 @@
 import { useState } from "react";
 
-const InstrumentSelection = ({ list, setInstrumentsCallback }) => {
+const GenericSelection = ({ list, setGenericsCallback }) => {
   const [inputQuery, setInputQuery] = useState("");
   const [results, setResults] = useState([]);
 
   const handleClick = (e) => {
     const selection = e.target.innerText;
-    setInstrumentsCallback(selection);
+    setGenericsCallback(selection);
     setResults([]);
     setInputQuery("");
   };
 
   const handleInputQuery = (e) => {
     setInputQuery(e.target.value);
-    const filteredInstruments = list
-      .filter((instrument) => {
-        return instrument.toLowerCase().includes(e.target.value.toLowerCase());
+    const filteredGenerics = list
+      .filter((generic) => {
+        return generic.toLowerCase().includes(e.target.value.toLowerCase());
       })
       .splice(0, 30);
-    setResults(filteredInstruments);
+    setResults(filteredGenerics);
   };
 
   return (
-    <div className="w-[80%] mx-auto">
-      <label className="font-bold" htmlFor="instruments filter">
-        Instruments
+    <div className=" w-[80%] mx-auto">
+      <label className="font-bold" htmlFor="Generics filter">
+        Other Interests
       </label>
       <br />
       <input
-        name="instruments filter"
+        name="generics filter"
         className="border border-solid rounded p-2 w-full"
-        placeholder="Search for Instruments"
+        placeholder="Search for interests"
         value={inputQuery}
         onInput={(e) => handleInputQuery(e)}
-        aria-label="instrument search"
+        aria-label="generic search"
         autoComplete="off"
         type="text"
       />
 
       <div
-        className="bg-gray-200 text-left overflow-y-scroll max-h-32 w-full"
         onClick={(e) => handleClick(e)}
+        className="bg-gray-200 text-left overflow-y-scroll max-h-32 w-full"
       >
         {inputQuery !== ""
           ? results.map((result) => {
               return (
-                <div className="p-2 border-b broder border-gray-300">
+                <div className="p-2  border-b broder border-gray-300">
                   {result}
                 </div>
               );
@@ -56,4 +56,4 @@ const InstrumentSelection = ({ list, setInstrumentsCallback }) => {
   );
 };
 
-export default InstrumentSelection;
+export default GenericSelection;

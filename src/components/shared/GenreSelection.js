@@ -22,7 +22,7 @@ const GenreSelection = ({ list, setGenresCallback }) => {
   };
 
   return (
-    <div className="w-64 mx-auto">
+    <div className="w-[80%] mx-auto">
       <label className="font-bold" htmlFor="genres filter">
         Genres
       </label>

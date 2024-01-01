@@ -25,7 +25,7 @@ const Filter = ({ fetchRecs }) => {
   const [rangeSlider, setRangeSlider] = useState(getRecentRange());
 
   const setInstrumentsAndGenres = async () => {
-    const list = await ListsApi.getInstrumentsAndGenres();
+    const list = await ListsApi.getTagList();
 
     setInstrumentsList(list.instruments);
     setGenresList(list.genres);
