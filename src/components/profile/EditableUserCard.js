@@ -1,4 +1,3 @@
-import SimilarTags from "../tags/SimilarTags";
 import Instruments from "../tags/Instruments";
 import SpotifyTags from "../tags/SpotifyTags";
 import GenreTags from "../tags/GenreTags";
@@ -11,6 +10,7 @@ import Bio from "../user/Bio";
 import { MdOutlineModeEdit } from "react-icons/md";
 import { useState } from "react";
 import EditModal from "./EditModal";
+import EditPhoto from "./EditPhoto";
 
 const EditableUserCard = ({ user }) => {
   const [editModal, setEditModal] = useState(false);
@@ -21,7 +21,10 @@ const EditableUserCard = ({ user }) => {
   return (
     <div className="max-w-[600px] mx-auto">
       <div>
-        <UserPhoto userInfo={user} />
+        <div>
+          <UserPhoto userInfo={user} />
+          <EditPhoto />
+        </div>
         <div className="mx-2 my-4">
           <div className="flex">
             <UsernameLink userInfo={user} />

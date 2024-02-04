@@ -102,6 +102,64 @@ class UserApi {
 
     return request;
   }
+
+  static updateUser = (newValues) => {
+    console.log("updating user");
+
+    let values = {
+      bio: newValues.bio,
+      social_links_attributes: [
+        {
+          type: "spotify",
+          url: newValues.spotifyLink,
+        },
+        {
+          type: "soundcloud",
+          url: newValues.soundcloudLink,
+        },
+        {
+          type: "bandcamp",
+          url: newValues.bandcampLink,
+        },
+        {
+          type: "instagram",
+          url: newValues.instagramLink,
+        },
+        {
+          type: "apple_music",
+          url: newValues.appleMusicLink,
+        }
+      ]
+    };
+
+    values = Object.keys(values).filter((key) => values[key] !== null && values[key] !== "" && values[key] !== undefined)
+      .reduce((obj, key) => {
+        obj[key] = values[key];
+        return obj;
+      }
+        , {});
+    
+    if (Object.keys(values).length === 0) {
+      return;
+    }
+
+    const social_links_attributes = values.social_links_attributes.filter((link) => link.url !== null && link.url !== "" && link.url !== undefined);
+
+    values.social_links_attributes = social_links_attributes;
+  
+    const request = $.ajax({
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${sessionStorage.jwt} ${sessionStorage.userId}`,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      url: `${process.env.REACT_APP_BACKEND_URL}/users/${sessionStorage.userId}`,
+      data: JSON.stringify({ user: values }),
+    });
+
+    return request;
+  }
 }
 
 export default UserApi;

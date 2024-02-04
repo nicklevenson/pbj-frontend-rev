@@ -18,9 +18,6 @@ const EditModal = ({ setEditModal }) => {
     lat: null,
     lng: null,
     bio: null,
-    genres: [],
-    instruments: [],
-    otherTags: [],
     spotifyLink: null,
     soundcloudLink: null,
     bandcampLink: null,
@@ -189,7 +186,14 @@ const EditModal = ({ setEditModal }) => {
       </div>
 
       <div className="fixed z-[10000] bottom-4 w-full flex">
-        <button className="bg-blue-500 text-white rounded p-2 w-[80%] mx-auto">
+        <button className="bg-blue-500 text-white rounded p-2 w-[80%] mx-auto"
+          onClick={() => {
+            UserApi.updateUser(formValues).then(() => {
+              setEditModal((prev) => !prev);
+              attemptFetchUser();
+            });
+          }}
+        >
           Save Changes
         </button>
       </div>
