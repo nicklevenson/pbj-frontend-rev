@@ -36,6 +36,12 @@ const Messages = () => {
               </Link>
             );
           })}
+
+          {chatrooms.length === 0 && (
+            <div className="text-2xl text-gray-500 text-center">
+              No messages yet
+            </div>
+          )}
         </div>
       )}
     </div>
