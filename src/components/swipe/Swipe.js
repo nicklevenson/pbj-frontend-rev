@@ -39,7 +39,7 @@ const Swipe = () => {
   };
 
   const fetchRecs = async (params) => {
-    if (currentUser && !currentUser.needsWelcomeStep) {
+    if (!currentUser?.needsWelcomeStep) {
       setShownUser(null);
       setActiveIndex(0);
       setLoading(true);
