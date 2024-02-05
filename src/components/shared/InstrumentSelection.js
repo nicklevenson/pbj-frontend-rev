@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const InstrumentSelection = ({ list, setInstrumentsCallback }) => {
+const InstrumentSelection = ({ list, setInstrumentsCallback, title="Instruments" }) => {
   const [inputQuery, setInputQuery] = useState("");
   const [results, setResults] = useState([]);
 
@@ -24,7 +24,7 @@ const InstrumentSelection = ({ list, setInstrumentsCallback }) => {
   return (
     <div className="w-[80%] mx-auto">
       <label className="font-bold" htmlFor="instruments filter">
-        Instruments
+        {title}
       </label>
       <br />
       <input

@@ -9,7 +9,7 @@ import ConnectedUsers from "../user/ConnectedUsers";
 import LocationBanner from "../user/LocationBanner";
 import Bio from "../user/Bio";
 
-const PreviewUserCard = ({ shownUser }) => {
+const PreviewUserCard = ({ shownUser, showSimilar = true }) => {
   const info = shownUser.info;
   const distance = shownUser.distance;
   const connections = shownUser.connections;
@@ -27,7 +27,7 @@ const PreviewUserCard = ({ shownUser }) => {
           <div className="my-6"></div>
           <Bio bio={info.bio} />
           <div className="my-6"></div>
-          {similarTags.length > 0 && <SimilarTags similarTags={similarTags} />}
+          {similarTags.length > 0 && showSimilar && <SimilarTags similarTags={similarTags} />}
           <div className="my-6"></div>
           {instruments.length > 0 && <Instruments instruments={instruments} />}
           <div className="my-6"></div>

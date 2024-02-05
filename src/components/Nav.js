@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { IoNotificationsOutline } from "react-icons/io5";
 import { MdOutlineSwipe } from "react-icons/md";
 import { FiUsers } from "react-icons/fi";

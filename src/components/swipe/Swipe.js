@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useLayoutEffect } from "react";
-import { useOutletContext } from "react-router-dom";
+import { Navigate, useOutletContext } from "react-router-dom";
 import UserApi from "../../api/user-api";
 import PreviewUserCard from "./PreviewUserCard";
 import ConnectForm from "../user/ConnectForm";
@@ -13,6 +13,7 @@ const Swipe = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [shownUser, setShownUser] = useState(null);
   const [cardInTransition, setCardInTransition] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const getRecentRange = () => {
     return localStorage.rangeFilter || 500;
@@ -40,8 +41,9 @@ const Swipe = () => {
   const fetchRecs = async (params) => {
     setShownUser(null);
     setActiveIndex(0);
+    setLoading(true);
     const recs = await UserApi.fetchUserRecs(params);
-    setRecs(recs);
+    setRecs(recs, setLoading(false));
   };
 
   const handleMessageLink = () => {};
@@ -77,6 +79,20 @@ const Swipe = () => {
   const resetIndex = () => {
     setActiveIndex(0);
   };
+
+  if (loading) {
+    return (
+    <div className="absolute inset-0 bg-gray-200 bg-opacity-50 flex justify-center items-center">
+      <div className="text-2xl text-gray-500">Loading...</div>
+    </div>
+    )
+  }
+
+  if (currentUser && currentUser.needsWelcomeStep) {
+    return (
+      <Navigate to="/welcome" />
+    )
+  }
 
   return (
     <div>

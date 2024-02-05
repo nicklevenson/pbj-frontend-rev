@@ -7,6 +7,11 @@ import Notifications from "./components/notifications/Notifications";
 import ShowUser from "./components/user/ShowUser";
 import Connections from "./components/connections/Connections";
 import Profile from "./components/profile/Profile";
+import Welcome from "./components/welcome/Welcome";
+import WelcomeStepOne from "./components/welcome/WelcomeStepOne";
+import WelcomeStepTwo from "./components/welcome/WelcomeStepTwo";
+import WelcomeStepThree from "./components/welcome/WelcomeStepThree";
+import Finish from "./components/welcome/Finish";
 
 const routes = [
   {
@@ -41,6 +46,26 @@ const routes = [
         path: "/profile",
         element: <Profile />,
       },
+      {
+        path: "/welcome",
+        element: <Welcome />
+      },
+      {
+        path: "/welcome/step1",
+        element: <WelcomeStepOne />
+      },
+      {
+        path: "/welcome/step2",
+        element: <WelcomeStepTwo />
+      },
+      {
+        path: "/welcome/step3",
+        element: <WelcomeStepThree />
+      },
+      {
+        path: "/welcome/finish",
+        element: <Finish />
+      }
     ],
   },
   {

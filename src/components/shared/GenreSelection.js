@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const GenreSelection = ({ list, setGenresCallback }) => {
+const GenreSelection = ({ list, setGenresCallback, title="Genres" }) => {
   const [inputQuery, setInputQuery] = useState("");
   const [results, setResults] = useState([]);
 
@@ -24,7 +24,7 @@ const GenreSelection = ({ list, setGenresCallback }) => {
   return (
     <div className="w-[80%] mx-auto">
       <label className="font-bold" htmlFor="genres filter">
-        Genres
+        {title}
       </label>
       <br />
       <input
