@@ -5,6 +5,7 @@ import { FiUsers } from "react-icons/fi";
 import { AiOutlineMessage } from "react-icons/ai";
 import { FiSettings } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import { LogoSvg } from "./shared/LogoSvg";
 
 const Nav = ({ notifications }) => {
   const unreadNotifications = () => {
@@ -20,7 +21,9 @@ const Nav = ({ notifications }) => {
   return (
     <div>
       <div className="flex flex-row justify-center absolute w-full top-0 bg-gray-300 h-12 items-center">
-        <span className="text-xl">PBJ</span>
+        <button className="relative">
+          <LogoSvg />
+        </button>
       </div>
       <div className="flex flex-row absolute bottom-0 h-16 w-full justify-between px-4 bg-gray-300 items-center">
         <Link to="swipe">

@@ -45,7 +45,9 @@ const Connections = () => {
         {connectedUsers?.length == 0 &&
           incomingConnections?.length == 0 &&
           pendingConnections?.length == 0 && (
-            <div>No activity here yet, get swiping!</div>
+            <div className="text-2xl text-gray-500 text-center">
+              No connections yet, swipe to find some!
+            </div>
           )}
       </div>
     </div>

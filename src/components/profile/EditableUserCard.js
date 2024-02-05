@@ -37,7 +37,7 @@ const EditableUserCard = ({ user }) => {
           </div>
           {editModal && <EditModal setEditModal={setEditModal} />}
           <ConnectedUsers connections={connections} />
-          <LocationBanner location={user.location} distance={0} />
+          <LocationBanner location={user.location} distance={"0"} />
           <div className="my-6"></div>
           <Bio bio={user.bio} />
           <div className="my-6"></div>

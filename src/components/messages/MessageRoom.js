@@ -40,7 +40,7 @@ const MessageRoom = () => {
               <BsChevronLeft size={"2rem"} />
             </Link>
             <img
-              src={chatroom.otherUserInfo.info.providerImage}
+              src={chatroom.otherUserInfo.info.photo || `${process.env.REACT_APP_BACKEND_URL}/userDefault.png`}
               className="rounded-full h-12"
             />
 
@@ -64,7 +64,7 @@ const MessageRoom = () => {
                     </div>
 
                     <img
-                      src={currentUser.providerImage}
+                      src={currentUser.photo || `${process.env.REACT_APP_BACKEND_URL}/userDefault.png`}
                       className="rounded-full h-12"
                     />
                   </div>
@@ -73,7 +73,7 @@ const MessageRoom = () => {
                 return (
                   <div className="w-full flex items-center">
                     <img
-                      src={chatroom.otherUserInfo.info.providerImage}
+                      src={chatroom.otherUserInfo.info.photo ||  `${process.env.REACT_APP_BACKEND_URL}/userDefault.png`}
                       className="rounded-full h-12"
                     />
                     <div>

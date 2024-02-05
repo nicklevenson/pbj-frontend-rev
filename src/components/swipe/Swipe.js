@@ -106,6 +106,12 @@ const Swipe = () => {
           </div>
         </div>
       )}
+
+      {recs.length === 0 && 
+        <div className="absolute inset-0 bg-gray-200 bg-opacity-50 flex justify-center items-center">
+            <div className="text-2xl text-gray-500">No users found</div>
+        </div>
+      }
     </div>
   );
 };

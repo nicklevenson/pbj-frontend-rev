@@ -27,15 +27,15 @@ const PreviewUserCard = ({ shownUser }) => {
           <div className="my-6"></div>
           <Bio bio={info.bio} />
           <div className="my-6"></div>
-          <SimilarTags similarTags={similarTags} />
+          {similarTags.length > 0 && <SimilarTags similarTags={similarTags} />}
           <div className="my-6"></div>
-          <Instruments instruments={instruments} />
+          {instruments.length > 0 && <Instruments instruments={instruments} />}
           <div className="my-6"></div>
-          <SpotifyTags spotifyTags={spotify} />
+          {spotify.length > 0 && <SpotifyTags spotifyTags={spotify} />}
           <div className="my-6"></div>
-          <GenreTags genres={genres} />
+          {genres.length > 0 && <GenreTags genres={genres} />}
           <div className="my-6"></div>
-          <GenericTags genericTags={generic} />
+          {generic.length > 0 && <GenericTags genericTags={generic} />}
         </div>
       </div>
     </div>

@@ -39,6 +39,11 @@ const Notifications = () => {
     <div>
       <h1 className="text-xl mb-4 font-bold px-4">Notifications</h1>
       <div>{renderNotifications()}</div>
+      {notifications.length === 0 && (
+        <div className="text-2xl text-gray-500 text-center">
+          No notifications yet
+        </div>
+      )}
     </div>
   );
 };

@@ -108,6 +108,10 @@ class UserApi {
 
     let values = {
       bio: newValues.bio,
+      username: newValues.username,
+      location: newValues.location,
+      lat: newValues.lat,
+      lng: newValues.lng,
       social_links_attributes: [
         {
           type: "spotify",
