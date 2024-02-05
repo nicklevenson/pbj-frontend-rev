@@ -39,11 +39,13 @@ const Swipe = () => {
   };
 
   const fetchRecs = async (params) => {
-    setShownUser(null);
-    setActiveIndex(0);
-    setLoading(true);
-    const recs = await UserApi.fetchUserRecs(params);
-    setRecs(recs, setLoading(false));
+    if (currentUser && !currentUser.needsWelcomeStep) {
+      setShownUser(null);
+      setActiveIndex(0);
+      setLoading(true);
+      const recs = await UserApi.fetchUserRecs(params);
+      setRecs(recs, setLoading(false));
+    }
   };
 
   const handleMessageLink = () => {};
@@ -80,17 +82,18 @@ const Swipe = () => {
     setActiveIndex(0);
   };
 
+
+  if (currentUser && currentUser.needsWelcomeStep) {
+    return (
+      <Navigate to="/welcome" />
+    )
+  }
+
   if (loading) {
     return (
     <div className="absolute inset-0 bg-gray-200 bg-opacity-50 flex justify-center items-center">
       <div className="text-2xl text-gray-500">Loading...</div>
     </div>
-    )
-  }
-
-  if (currentUser && currentUser.needsWelcomeStep) {
-    return (
-      <Navigate to="/welcome" />
     )
   }
 

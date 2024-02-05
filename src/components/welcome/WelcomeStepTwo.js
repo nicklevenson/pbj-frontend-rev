@@ -1,5 +1,5 @@
 
-import React, { useLayoutEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
 import UserApi from "../../api/user-api";
 import InstrumentSelection from "../shared/InstrumentSelection";
@@ -15,6 +15,7 @@ const WelcomeStepTwo = () => {
   const [instrumentsList, setInstrumentsList] = useState([]);
   const [genresList, setGenresList] = useState([]);
   const [genericList, setGenericList] = useState([]);
+  const [canSubmit, setCanSubmit] = useState(false);
 
   const setInstrumentsCallback = (instrument) => {
     updateTag(instrument, "instrument", "add");
@@ -40,6 +41,15 @@ const WelcomeStepTwo = () => {
     setLists();
   }, []);
   
+  useEffect(() => {
+    if (currentUser) {
+      if (currentUser.tags.instruments.length > 0 || currentUser.tags.genres.length > 0 || currentUser.tags.generic.length > 0) {
+        setCanSubmit(true);
+      } else {
+        setCanSubmit(false);
+      }
+    }
+  }, [currentUser]);
 
   const updateTag = (name, kind, action) => {
     UserApi.updateTag(name, kind, action)
@@ -115,11 +125,12 @@ const WelcomeStepTwo = () => {
       </div>
 
       <div className="fixed z-[10000] bottom-4 w-full flex">
-        <button className="bg-blue-500 text-white rounded p-2 w-[80%] mx-auto"
+        <button className={`${canSubmit ? 'bg-blue-500' : 'bg-gray-300'} text-white rounded p-2 w-[80%] mx-auto`}
           onClick={() => {
             attemptFetchUser();
             navigate("/welcome/step3");
           }}
+          disabled={!canSubmit}
         >
           Next
         </button>

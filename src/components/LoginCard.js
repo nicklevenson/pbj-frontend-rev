@@ -16,7 +16,7 @@ const LoginCard = () => {
       sessionStorage.setItem("jwt", jwt);
       sessionStorage.setItem("userId", id);
       if (urlParams.get("new")) {
-        navigate("/new");
+        navigate("/welcome");
       } else {
         navigate("/swipe");
       }
@@ -42,7 +42,7 @@ const LoginCard = () => {
           <div className="mt-4 text-center text-gray-700">
             <b>How it works</b>
             <ol className="text-gray-700 italic text-sm">
-              <li className="my-2">Create an account with Spotify or Google. We recommend Spotify because it gives us a sense of your music taste</li>
+              <li className="my-2">Create an account with Spotify. It gives us a sense of your music taste</li>
               <li className="my-2">Swipe on folks with similar music taste</li>
               <li className="my-2">Filter based on distance, what instruments people play, and genres they enjoy</li>
               <li className="my-2">Request to Jam with folks you think you'd vibe with</li>
@@ -64,7 +64,7 @@ const LoginCard = () => {
               >
                 <div className="p-4 bg-green-300 border rounded">
                   <div>
-                    Continue With Spotify <i>(Recommended)</i>
+                    Continue With Spotify
                   </div>
                 </div>
                 </a>

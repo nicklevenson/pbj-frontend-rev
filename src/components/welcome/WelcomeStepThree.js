@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
 import EditPhoto from "../profile/EditPhoto";
 import UserPhoto from "../user/UserPhoto";
@@ -7,6 +7,17 @@ import UserPhoto from "../user/UserPhoto";
 const WelcomeStepThree = () => {
   const navigate = useNavigate();
   const { currentUser, attemptFetchUser } = useOutletContext();
+  const [canSubmit, setCanSubmit] = useState(false);
+
+  useEffect(() => {
+    if (currentUser) {
+      if (currentUser.photo) {
+        setCanSubmit(true);
+      } else {
+        setCanSubmit(false);
+      }
+    }
+  }, [currentUser]);
 
   if (!currentUser) return null;
     
@@ -35,11 +46,12 @@ const WelcomeStepThree = () => {
       </div>
 
       <div className="fixed z-[10000] bottom-4 w-full flex">
-        <button className="bg-blue-500 text-white rounded p-2 w-[80%] mx-auto"
+        <button className={`${canSubmit ? 'bg-blue-500' : 'bg-gray-300'} text-white rounded p-2 w-[80%] mx-auto`}
           onClick={() => {
             attemptFetchUser();
             navigate("/welcome/finish");
           }}
+          disabled={!canSubmit}
         >
           Next
         </button>
