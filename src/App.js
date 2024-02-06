@@ -76,7 +76,6 @@ function App() {
   };
 
   const handleChatroomReception = (chatrooms) => {
-    console.log(chatrooms);
     setChatrooms(camelize(chatrooms));
   };
 
