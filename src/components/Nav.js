@@ -57,7 +57,7 @@ const Nav = ({ notifications, chatrooms, currentUser }) => {
         <Link to="messages">
           <span className="relative">
             <AiOutlineMessage size={"2rem"} />
-            {hasUnreadMessages() && (
+            {currentUser && hasUnreadMessages() && (
               <div className="absolute -top-2 -right-2 bg-red-400 rounded-full text-sm px-1">
                 {unreadMessages().length}
               </div>
