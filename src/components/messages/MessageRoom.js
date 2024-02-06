@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useOutletContext, useParams, Link } from "react-router-dom";
 import { BsChevronLeft } from "react-icons/bs";
 
@@ -22,7 +22,9 @@ const MessageRoom = () => {
 
   useEffect(() => {
     if (chatroom && chatroom?.hasUnread) {
-      chatroomConnection.markRead(roomId);
+      setTimeout(() => {
+        chatroomConnection.markRead(roomId);
+      }, 500);
     }
   }, [chatroom]);
 
