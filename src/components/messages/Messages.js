@@ -4,12 +4,31 @@ import UserPhoto from "../user/UserPhoto";
 const Messages = () => {
   const { chatrooms } = useOutletContext();
 
+  const orderedChatrooms = chatrooms.sort((a, b) => {
+    // sort by most recent unread message
+    if (a.hasUnread && b.hasUnread) {
+      return (
+        new Date(b.messages[b.messages.length - 1].createdAt) -
+        new Date(a.messages[a.messages.length - 1].createdAt)
+      );
+    } else if (a.hasUnread) {
+      return -1;
+    } else if (b.hasUnread) {
+      return 1;
+    } else {
+      return (
+        new Date(b.messages[b.messages.length - 1]?.createdAt) -
+        new Date(a.messages[a.messages.length - 1]?.createdAt)
+      );
+    }
+  });
+
   return (
     <div className="px-4">
       <h1 className="text-xl mb-4 font-bold">Messages</h1>
       {chatrooms && (
         <div>
-          {chatrooms.map((chatroom) => {
+          {orderedChatrooms.map((chatroom) => {
             return (
               <Link to={`${chatroom.id}`}>
                 <div

@@ -7,7 +7,7 @@ import { FiSettings } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { LogoSvg } from "./shared/LogoSvg";
 
-const Nav = ({ notifications }) => {
+const Nav = ({ notifications, chatrooms, currentUser }) => {
   const unreadNotifications = () => {
     return notifications.filter(
       ({ notification }) => notification.read !== true
@@ -17,6 +17,29 @@ const Nav = ({ notifications }) => {
   const hasUnreadNotifications = () => {
     return unreadNotifications().length > 0;
   };
+
+  const unreadMessages = () => {
+    if (chatrooms.length === 0) return [];
+  
+    // sum up the unread messages from all chatrooms
+
+    const allMessages = chatrooms.map((chatroom) => {
+      return chatroom.messages
+    }).flat()
+  
+    const unreadMessages = allMessages.filter((message) => {
+        return message.readAt === null && message.userId !== currentUser.id
+      }
+    );
+    
+    return unreadMessages
+  }
+    
+
+  const hasUnreadMessages = () => {
+    return unreadMessages().length > 0;
+  }
+  
 
   return (
     <div>
@@ -32,8 +55,13 @@ const Nav = ({ notifications }) => {
           </span>
         </Link>
         <Link to="messages">
-          <span>
+          <span className="relative">
             <AiOutlineMessage size={"2rem"} />
+            {hasUnreadMessages() && (
+              <div className="absolute -top-2 -right-2 bg-red-400 rounded-full text-sm px-1">
+                {unreadMessages().length}
+              </div>
+            )}
           </span>
         </Link>
         <Link to="connections">

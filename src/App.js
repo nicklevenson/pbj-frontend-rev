@@ -76,6 +76,7 @@ function App() {
   };
 
   const handleChatroomReception = (chatrooms) => {
+    console.log(chatrooms);
     setChatrooms(camelize(chatrooms));
   };
 
@@ -126,7 +127,7 @@ function App() {
         )}
         {!Authentication.loggedIn() && <Navigate to="/login" />}
       </div>
-      <Nav notifications={notifications} />
+      <Nav notifications={notifications} chatrooms={chatrooms} currentUser={currentUser} />
     </div>
   );
 }
