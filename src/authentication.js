@@ -1,8 +1,9 @@
+import Cookies from "js-cookie";
 import UserApi from "./api/user-api";
 
 class Authentication {
   static loggedIn() {
-    return sessionStorage.userId && sessionStorage.jwt;
+    return sessionStorage.userId && sessionStorage.jwt && Cookies.get("loggedIn");
   }
 
   static fetchUser() {
@@ -11,6 +12,7 @@ class Authentication {
 
   static logout() {
     sessionStorage.clear();
+    Cookies.remove("loggedIn");
   }
 }
 

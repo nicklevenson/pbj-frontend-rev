@@ -4,8 +4,9 @@ import { useState, useEffect } from "react";
 import Authentication from "./authentication";
 import ActionCable from "actioncable";
 import camelize from "camelize";
+import { withCookies } from "react-cookie";
 
-function App() {
+function App({cookies}) {
   const [currentUser, setCurrentUser] = useState(null);
   const [notificationCable, setNotificationCable] = useState(null);
   const [notifications, setNotifications] = useState([]);
@@ -19,6 +20,12 @@ function App() {
       attemptFetchUser();
     }
   }, []);
+
+  useEffect(() => {
+    if (!Authentication.loggedIn()) {
+      setCurrentUser(null);
+    }
+  }, [cookies]);
 
   useEffect(() => {
     if (currentUser) {
@@ -131,4 +138,4 @@ function App() {
   );
 }
 
-export default App;
+export default withCookies(App);

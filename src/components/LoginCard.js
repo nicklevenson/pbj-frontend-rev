@@ -1,9 +1,13 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { LogoSvg } from "./shared/LogoSvg";
+import { useCookies } from "react-cookie";
+
 
 const LoginCard = () => {
   const navigate = useNavigate();
+  const [cookies, setCookie] = useCookies(["loggedIn"]);
+
   useEffect(() => {
     grabTokenAndRedirect();
   }, []);
@@ -15,6 +19,7 @@ const LoginCard = () => {
       const id = parseInt(urlParams.get("id"));
       sessionStorage.setItem("jwt", jwt);
       sessionStorage.setItem("userId", id);
+      setCookie("loggedIn", true, { path: "/", expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7) })
       if (urlParams.get("new")) {
         navigate("/welcome");
       } else {
