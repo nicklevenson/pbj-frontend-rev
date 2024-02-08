@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const InstrumentSelection = ({ list, setInstrumentsCallback, title="Instruments", sumbitable=false }) => {
+const InstrumentSelection = ({ list, setInstrumentsCallback, title="Instruments", submitable=false }) => {
   const [inputQuery, setInputQuery] = useState("");
   const [results, setResults] = useState([]);
 
@@ -39,7 +39,7 @@ const InstrumentSelection = ({ list, setInstrumentsCallback, title="Instruments"
           type="text"
         />
 
-        {sumbitable && <button className="ml-1 bg-green-300 p-2 rounded" onClick={() => setInstrumentsCallback(inputQuery)}>Add</button>}
+        {submitable && <button className="ml-1 bg-green-300 p-2 rounded" onClick={() => setInstrumentsCallback(inputQuery)}>Add</button>}
       </div>
       <div
         className="bg-gray-200 text-left overflow-y-scroll max-h-32 w-full"

@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "REACT_APP_BACKEND_URL=$BACKEND_URL node index.js"
+    "start": "node index.js",
+    "heroku-postbuild": "cd client && npm install && REACT_APP_BACKEND_URL=$BACKEND_URL npm run build"
   },
   "repository": {
     "type": "git",
