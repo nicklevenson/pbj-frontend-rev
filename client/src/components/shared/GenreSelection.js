@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const GenreSelection = ({ list, setGenresCallback, title="Genres" }) => {
+const GenreSelection = ({ list, setGenresCallback, title="Genres", submitable=false }) => {
   const [inputQuery, setInputQuery] = useState("");
   const [results, setResults] = useState([]);
 
@@ -27,17 +27,21 @@ const GenreSelection = ({ list, setGenresCallback, title="Genres" }) => {
         {title}
       </label>
       <br />
-      <input
-        name="genres filter"
-        className="border border-solid rounded p-2 w-full"
-        placeholder="Search for Genres"
-        value={inputQuery}
-        onInput={(e) => handleInputQuery(e)}
-        aria-label="genre search"
-        autoComplete="off"
-        type="text"
-      />
+      <div className="flex">
+        <input
+          name="genres filter"
+          className="border border-solid rounded p-2 w-full"
+          placeholder="Search for Genres"
+          value={inputQuery}
+          onInput={(e) => handleInputQuery(e)}
+          aria-label="genre search"
+          autoComplete="off"
+          type="text"
+        />
 
+
+        {submitable ? <button className="ml-1 bg-green-300 p-2 rounded" onClick={() => setGenresCallback(inputQuery)}>Add</button> : null}
+      </div>
       <div
         onClick={(e) => handleClick(e)}
         className="bg-gray-200 text-left overflow-y-scroll max-h-32 w-full"
