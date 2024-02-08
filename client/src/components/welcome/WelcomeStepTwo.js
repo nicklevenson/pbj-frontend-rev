@@ -72,6 +72,7 @@ const WelcomeStepTwo = () => {
           list={instrumentsList.filter((i) => !instruments.includes(i))}
           setInstrumentsCallback={setInstrumentsCallback}
           title="What instruments do you play?"
+          submitable={true}
         />
         
         <div className="w-[80%] mx-auto">
@@ -87,6 +88,7 @@ const WelcomeStepTwo = () => {
           list={genresList.filter((g) => !genres.includes(g))}
           setGenresCallback={setGenresCallback}
           title="What genres do you like?"
+          submitable={true}
         />
 
         <div className="w-[80%] mx-auto">
@@ -102,6 +104,7 @@ const WelcomeStepTwo = () => {
         <GenericSelection
           list={genericList.filter((g) => !generic.includes(g))}
           setGenericsCallback={setGenericCallback}
+          submitable={true}
         />
           
         <div className="w-[80%] mx-auto">

@@ -112,6 +112,7 @@ const EditModal = ({ setEditModal }) => {
         <InstrumentSelection
           list={instrumentsList.filter((i) => !instruments.includes(i))}
           setInstrumentsCallback={setInstrumentsCallback}
+          sumbitable={true}
         />
 
         <div className="w-[80%] mx-auto">
@@ -125,6 +126,7 @@ const EditModal = ({ setEditModal }) => {
         <GenreSelection
           list={genresList.filter((g) => !genres.includes(g))}
           setGenresCallback={setGenresCallback}
+          submitable={true}
         />
 
         <div className="w-[80%] mx-auto">
@@ -138,6 +140,7 @@ const EditModal = ({ setEditModal }) => {
         <GenericSelection
           list={genericList.filter((g) => !generic.includes(g))}
           setGenericsCallback={setGenericCallback}
+          submitable={true}
         />
           
         <div className="w-[80%] mx-auto">

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const InstrumentSelection = ({ list, setInstrumentsCallback, title="Instruments" }) => {
+const InstrumentSelection = ({ list, setInstrumentsCallback, title="Instruments", sumbitable=false }) => {
   const [inputQuery, setInputQuery] = useState("");
   const [results, setResults] = useState([]);
 
@@ -27,17 +27,20 @@ const InstrumentSelection = ({ list, setInstrumentsCallback, title="Instruments"
         {title}
       </label>
       <br />
-      <input
-        name="instruments filter"
-        className="border border-solid rounded p-2 w-full"
-        placeholder="Search for Instruments"
-        value={inputQuery}
-        onInput={(e) => handleInputQuery(e)}
-        aria-label="instrument search"
-        autoComplete="off"
-        type="text"
-      />
+      <div className="flex">
+        <input
+          name="instruments filter"
+          className="border border-solid rounded p-2 w-full"
+          placeholder="Search for Instruments"
+          value={inputQuery}
+          onInput={(e) => handleInputQuery(e)}
+          aria-label="instrument search"
+          autoComplete="off"
+          type="text"
+        />
 
+        {sumbitable && <button className="ml-1 bg-green-300 p-2 rounded" onClick={() => setInstrumentsCallback(inputQuery)}>Add</button>}
+      </div>
       <div
         className="bg-gray-200 text-left overflow-y-scroll max-h-32 w-full"
         onClick={(e) => handleClick(e)}

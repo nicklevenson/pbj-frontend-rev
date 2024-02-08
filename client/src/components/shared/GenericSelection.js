@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const GenericSelection = ({ list, setGenericsCallback }) => {
+const GenericSelection = ({ list, setGenericsCallback, submitable=false}) => {
   const [inputQuery, setInputQuery] = useState("");
   const [results, setResults] = useState([]);
 
@@ -27,17 +27,20 @@ const GenericSelection = ({ list, setGenericsCallback }) => {
         Other Interests
       </label>
       <br />
-      <input
-        name="generics filter"
-        className="border border-solid rounded p-2 w-full"
-        placeholder="Search for interests"
-        value={inputQuery}
-        onInput={(e) => handleInputQuery(e)}
-        aria-label="generic search"
-        autoComplete="off"
-        type="text"
-      />
-
+      <div className="flex">
+        <input
+          name="generics filter"
+          className="border border-solid rounded p-2 w-full"
+          placeholder="Search for interests"
+          value={inputQuery}
+          onInput={(e) => handleInputQuery(e)}
+          aria-label="generic search"
+          autoComplete="off"
+          type="text"
+          />
+        
+        {submitable ? <button className="ml-1 bg-green-300 p-2 rounded" onClick={() => setGenericsCallback(inputQuery)}>Add</button> : null}
+      </div>
       <div
         onClick={(e) => handleClick(e)}
         className="bg-gray-200 text-left overflow-y-scroll max-h-32 w-full"
