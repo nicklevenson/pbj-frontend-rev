@@ -41,12 +41,14 @@ const WelcomeStepOne = () => {
     bio,
   } = currentUser;
 
+  console.log(currentUser)
 
   const isFormDisabled = () => {
     console.log(username, formValues.username)
     console.log(location, formValues.location)
     console.log(bio, formValues.bio)
     return (
+      (!formValues.lat || !formValues.lng) || // (location is not set yet
       (!username && formValues.username === "") ||
       (!location && formValues.location === "") ||
       (!bio && formValues.bio === "")

@@ -14,6 +14,8 @@ const Swipe = () => {
   const [shownUser, setShownUser] = useState(null);
   const [cardInTransition, setCardInTransition] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [showConnectForm, setShowConnectForm] = useState(true);
+  const [outOfRecs, setOutOfRecs] = useState(false);
 
   const getRecentRange = () => {
     return localStorage.rangeFilter || 500;
@@ -51,12 +53,16 @@ const Swipe = () => {
   const handleMessageLink = () => {};
 
   const handleConnectionRequest = async () => {
+    setShowConnectForm(false);
     await UserApi.requestConnection(shownUser.info.id);
+    setShowConnectForm(true);
     nextCard();
   };
 
   const handleConnectionAccept = async () => {
+    setShowConnectForm(false);
     await UserApi.acceptConnection(shownUser.info.id);
+    setShowConnectForm(true);
     nextCard();
   };
 
@@ -71,15 +77,11 @@ const Swipe = () => {
 
   const nextCard = () => {
     if (activeIndex === recs.length - 1) {
-      resetIndex();
+      setOutOfRecs(true);
     } else {
       animateCardIn();
       setActiveIndex((prevState) => prevState + 1);
     }
-  };
-
-  const resetIndex = () => {
-    setActiveIndex(0);
   };
 
 
@@ -97,8 +99,26 @@ const Swipe = () => {
     )
   }
 
+  if (outOfRecs) {
+    return (
+      <div className="absolute inset-0 bg-gray-200 bg-opacity-50 flex justify-center items-center">
+        <div className="text-2xl text-gray-500">That's it for now</div>
+        <button
+          onClick={() => {
+            setOutOfRecs(false);
+            fetchRecs({
+              range: getRecentRange(),
+            });
+          }}
+          className="ml-4 bg-blue-400 text-white p-2 rounded">
+          Refresh?
+          </button>
+      </div>
+    )
+  }
+
   return (
-    <div>
+    <div className="w-full overscroll-x-none">
       <Filter fetchRecs={fetchRecs} />
       {currentUser && shownUser && (
         <div>
@@ -112,15 +132,19 @@ const Swipe = () => {
           </Animated>
           <div className="fixed bottom-16 z-8 h-16 text-2xl w-full bg-gray-200 bg-opacity-50">
             <div className="mt-2 w-full flex flex-row justify-around">
-              <ConnectForm
-                currentUser={currentUser}
-                shownUser={shownUser}
-                handleMessageLink={handleMessageLink}
-                handleConnectionRequest={handleConnectionRequest}
-                handleConnectionAccept={handleConnectionAccept}
-                handleConnectionReject={handleConnectionReject}
-              />
-              <NextUserButton nextCard={nextCard} />
+              {showConnectForm && 
+                <>
+                  <ConnectForm
+                    currentUser={currentUser}
+                    shownUser={shownUser}
+                    handleMessageLink={handleMessageLink}
+                    handleConnectionRequest={handleConnectionRequest}
+                    handleConnectionAccept={handleConnectionAccept}
+                    handleConnectionReject={handleConnectionReject}
+                  />
+                  <NextUserButton nextCard={nextCard} />
+                </>
+              }
             </div>
           </div>
         </div>
