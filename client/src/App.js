@@ -28,20 +28,30 @@ function App({cookies}) {
   }, [cookies]);
 
   useEffect(() => {
+    if (notificationCable) {
+      createNotificationSubscription();
+    }
+  }, [notificationCable]);
+
+  useEffect(() => {
+    if (chatroomCable) {
+      createChatroomSubscription();
+    }
+  }, [chatroomCable]);
+
+  useEffect(() => {
     if (currentUser) {
       setNotificationCable(
         ActionCable.createConsumer(
           `${process.env.REACT_APP_BACKEND_URL}/notification_stream?token=${sessionStorage.jwt}`
         )
       );
-      createNotificationSubscription();
 
       setChatroomCable(
         ActionCable.createConsumer(
           `${process.env.REACT_APP_BACKEND_URL}/chatroom_stream?token=${sessionStorage.jwt}`
         )
       );
-      createChatroomSubscription();
     }
   }, [currentUser]);
 
