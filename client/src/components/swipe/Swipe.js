@@ -118,7 +118,7 @@ const Swipe = () => {
   }
 
   return (
-    <div className="w-full overscroll-x-none">
+    <div className="w-full">
       <Filter fetchRecs={fetchRecs} />
       {currentUser && shownUser && (
         <div>

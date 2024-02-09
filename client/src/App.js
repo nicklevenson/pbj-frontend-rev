@@ -125,7 +125,7 @@ function App({cookies}) {
 
   return (
     <div>
-      <div className="mt-8 min-h-screen">
+      <div className="mt-8 min-h-screen max-w-[100vw]">
         {Authentication.loggedIn() && (
           <div className="overflow-y-scroll h-screen pt-8 pb-44">
             <Outlet

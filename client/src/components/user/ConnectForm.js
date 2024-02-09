@@ -51,7 +51,6 @@ const ConnectForm = ({
       )}
       {isAlreadyConnected() && (
         <button
-          className="message-user-button "
           onClick={handleMessageLink}
           className="py-2 px-4 bg-indigo-600 text-white border-gray-500 border-solid border rounded"
         >
