@@ -118,7 +118,7 @@ const Swipe = () => {
   }
 
   return (
-    <div className="w-full">
+    <div className="max-w-[100vw]">
       <Filter fetchRecs={fetchRecs} />
       {currentUser && shownUser && (
         <div>
