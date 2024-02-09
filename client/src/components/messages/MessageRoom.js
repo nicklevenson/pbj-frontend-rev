@@ -36,7 +36,7 @@ const MessageRoom = () => {
   return (
     <div className="px-4 h-full">
       {chatroom && (
-        <div className="h-[85%]">
+        <div className="h-[95%]">
           <div className="flex items-center gap-4 mb-4">
             <Link to="/messages">
               <BsChevronLeft size={"2rem"} />
@@ -91,7 +91,7 @@ const MessageRoom = () => {
               }
             })}
           </div>
-          <div className="flex justify-center bg-white w-full mt-1">
+          <div className="absolute bottom-20 flex justify-center bg-white w-full mt-1">
             <input
               placeholder="chat"
               value={newMessage}
