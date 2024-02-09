@@ -64,53 +64,51 @@ const Filter = ({ fetchRecs }) => {
   };
 
   return (
-    <div
-      className={`fixed top-12 z-10 bg-white w-full text-center ${
-        displayed && "max-h-screen min-h-screen"
-      } overflow-y-scroll`}
-    >
-      <div onClick={() => setDisplayed(!displayed)}>
+    <>
+      <div onClick={() => setDisplayed(!displayed)} className="absolute top-12 z-10 bg-white w-full text-center ">
         <BsFilter size={"2rem"} className="mx-auto" />
       </div>
-      {displayed && (
-        <div className="mb-40">
-          <RangeSlider
-            rangeSlider={rangeSlider}
-            changeRangeSlider={changeRangeSlider}
-          />
-          <InstrumentSelection
-            list={instrumentsList.filter((i) => !instruments.includes(i))}
-            setInstrumentsCallback={setInstrumentsCallback}
-          />
-          <br />
-          <GenreSelection
-            list={genresList.filter((g) => !genres.includes(g))}
-            setGenresCallback={setGenresCallback}
-          />
-          <br />
+        {displayed && (
+        <div className="mt-20 absolute inset-0 overflow-y-scroll z-10 bg-white text-center">
+          <div>
+            <RangeSlider
+              rangeSlider={rangeSlider}
+              changeRangeSlider={changeRangeSlider}
+            />
+            <InstrumentSelection
+              list={instrumentsList.filter((i) => !instruments.includes(i))}
+              setInstrumentsCallback={setInstrumentsCallback}
+            />
+            <br />
+            <GenreSelection
+              list={genresList.filter((g) => !genres.includes(g))}
+              setGenresCallback={setGenresCallback}
+            />
+            <br />
 
-          <FilterSelections
-            selections={instruments}
-            heading={"Plays"}
-            removeCallback={handleRemoveInstrument}
-          />
+            <FilterSelections
+              selections={instruments}
+              heading={"Plays"}
+              removeCallback={handleRemoveInstrument}
+            />
 
-          <FilterSelections
-            selections={genres}
-            heading={"Listens To"}
-            removeCallback={handleRemoveGenre}
-          />
-          <div className="fixed bottom-0 h-20 w-full">
-            <button
-              className="text-xl font-bold w-52 bg-gray-600 text-white p-2 rounded"
-              onClick={sendFilters}
-            >
-              Apply Filters
-            </button>
+            <FilterSelections
+              selections={genres}
+              heading={"Listens To"}
+              removeCallback={handleRemoveGenre}
+            />
+            <div className="absolute bottom-8 h-20 w-full">
+              <button
+                className="text-xl font-bold w-52 bg-gray-600 text-white p-2 rounded"
+                onClick={sendFilters}
+              >
+                Apply Filters
+              </button>
+            </div>
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 };
 

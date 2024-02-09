@@ -42,7 +42,7 @@ const Nav = ({ notifications, chatrooms, currentUser }) => {
   
 
   return (
-    <div>
+    <>
       <div className="flex flex-row justify-center absolute w-full top-0 bg-gray-300 h-12 items-center">
         <button className="relative">
           <LogoSvg />
@@ -85,7 +85,7 @@ const Nav = ({ notifications, chatrooms, currentUser }) => {
           </span>
         </Link>
       </div>
-    </div>
+    </>
   );
 };
 

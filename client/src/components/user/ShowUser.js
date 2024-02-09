@@ -44,7 +44,7 @@ const ShowUser = () => {
       {currentUser && shownUser && (
         <div>
           <PreviewUserCard shownUser={shownUser} />
-          <div className="fixed bottom-16 z-8 h-16 text-2xl w-full bg-gray-200 bg-opacity-50">
+          <div className="absolute bottom-16 z-8 h-16 text-2xl w-full bg-gray-200 bg-opacity-50">
             <div className="mt-2 w-full flex flex-row justify-around flex-nowrap">
               <ConnectForm
                 currentUser={currentUser}

@@ -32,6 +32,10 @@ const Swipe = () => {
   }, [recs, activeIndex]);
 
   const fetchShownUser = async () => {
+    if (recs.length === 0) {
+      setShownUser(null);
+    }
+
     const id = recs[activeIndex];
     if (id) {
       const response = await UserApi.fetchSupportingInfo(id);
@@ -118,7 +122,7 @@ const Swipe = () => {
   }
 
   return (
-    <div className="max-w-[100vw]">
+    <div className="max-w-[100dvw] overflow-x-hidden">
       <Filter fetchRecs={fetchRecs} />
       {currentUser && shownUser && (
         <div>
@@ -130,7 +134,7 @@ const Swipe = () => {
           >
             <PreviewUserCard shownUser={shownUser} currentUser={currentUser} />
           </Animated>
-          <div className="fixed bottom-16 z-8 h-16 text-2xl w-full bg-gray-200 bg-opacity-50">
+          <div className="absolute bottom-16 z-8 h-16 text-2xl w-full bg-gray-200 bg-opacity-50">
             <div className="mt-2 w-full flex flex-row justify-around">
               {showConnectForm && 
                 <>
