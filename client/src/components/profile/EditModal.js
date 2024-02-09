@@ -22,7 +22,7 @@ const EditModal = ({ setEditModal }) => {
     soundcloudLink: null,
     bandcampLink: null,
     instagramLink: null,
-    appleMusicLink: null,
+    appleMusicLink: null
   });
 
   const setNewFormValue = (key, newValue) => {
@@ -42,7 +42,7 @@ const EditModal = ({ setEditModal }) => {
     soundcloudLink,
     bandcampLink,
     instagramLink,
-    appleMusicLink,
+    appleMusicLink
   } = currentUser;
 
   const { instruments, genres, generic } = currentUser.tags;
@@ -186,6 +186,7 @@ const EditModal = ({ setEditModal }) => {
           setNewFormValue={setNewFormValue}
           value={formValues.appleMusicLink}
         />
+ 
       </div>
 
       <div className="fixed z-[10000] bottom-4 w-full flex">
