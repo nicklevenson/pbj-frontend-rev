@@ -112,6 +112,7 @@ class UserApi {
       location: newValues.location,
       lat: newValues.lat,
       lng: newValues.lng,
+      incognito: newValues.incognito,
       social_links_attributes: [
         {
           type: "spotify",

@@ -22,7 +22,7 @@ const Profile = () => {
               <FiLogOut size={"2rem"} />
             </span>
           </div>
-          <EditableUserCard user={currentUser} />
+          <EditableUserCard />
           {logoutPrompt && <LogoutModal setLogoutPrompt={setLogoutPrompt} />}
         </div>
       )}
