@@ -5,7 +5,6 @@ import { FiUsers } from "react-icons/fi";
 import { AiOutlineMessage } from "react-icons/ai";
 import { FiSettings } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import { LogoSvg } from "./shared/LogoSvg";
 
 const Nav = ({ notifications, chatrooms, currentUser }) => {
   const unreadNotifications = () => {
@@ -43,11 +42,6 @@ const Nav = ({ notifications, chatrooms, currentUser }) => {
 
   return (
     <>
-      <div className="flex flex-row justify-center absolute w-full top-0 bg-gray-300 h-12 items-center">
-        <button className="relative">
-          <LogoSvg />
-        </button>
-      </div>
       <div className="flex flex-row sticky -bottom-1 h-16 w-full justify-between px-4 bg-gray-300 items-center">
         <Link to="swipe">
           <span>

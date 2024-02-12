@@ -65,11 +65,11 @@ const Filter = ({ fetchRecs }) => {
 
   return (
     <>
-      <div onClick={() => setDisplayed(!displayed)} className="absolute top-12 z-10 bg-white w-full text-center ">
+      <div onClick={() => setDisplayed(!displayed)} className="fixed top-12 z-10 bg-white w-full text-center ">
         <BsFilter size={"2rem"} className="mx-auto" />
       </div>
         {displayed && (
-        <div className="mt-20 absolute inset-0 overflow-y-scroll z-10 bg-white text-center">
+        <div className="mt-20 fixed inset-0 overflow-y-scroll z-10 bg-white text-center">
           <div>
             <RangeSlider
               rangeSlider={rangeSlider}

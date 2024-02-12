@@ -5,6 +5,7 @@ import Authentication from "./authentication";
 import ActionCable from "actioncable";
 import camelize from "camelize";
 import { withCookies } from "react-cookie";
+import { LogoSvg } from "./components/shared/LogoSvg";
 
 function App({cookies}) {
   const [currentUser, setCurrentUser] = useState(null);
@@ -124,9 +125,14 @@ function App({cookies}) {
   };
 
   return (
-    <div className="h-[100svh] sticky">
+    <div className="h-[100svh]">
+      <div className="flex flex-row justify-center sticky w-full top-0 bg-gray-300 h-12 items-center">
+        <button className="relative">
+          <LogoSvg />
+        </button>
+      </div>
         {Authentication.loggedIn() && (
-          <div className="pt-12 pb-36 h-full overflow-y-scroll max-w-[100vw] overflow-x-hidden">
+          <div className="pb-36 h-full overflow-y-scroll max-w-[100vw] overflow-x-hidden">
             <Outlet
               context={{
                 currentUser,
