@@ -48,7 +48,7 @@ const Nav = ({ notifications, chatrooms, currentUser }) => {
           <LogoSvg />
         </button>
       </div>
-      <div className="flex flex-row absolute -bottom-2 h-16 w-full justify-between px-4 bg-gray-300 items-center">
+      <div className="flex flex-row absolute -bottom-1 h-16 w-full justify-between px-4 bg-gray-300 items-center">
         <Link to="swipe">
           <span>
             <MdOutlineSwipe size={"2rem"} />

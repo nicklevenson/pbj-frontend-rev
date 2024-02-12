@@ -124,7 +124,7 @@ function App({cookies}) {
   };
 
   return (
-    <div className="h-[100dvh]">
+    <div className="h-[100svh] absolute inset-0">
         {Authentication.loggedIn() && (
           <div className="pt-12 pb-36 mt-8 h-full overflow-y-scroll max-w-[100vw] overflow-x-hidden">
             <Outlet
