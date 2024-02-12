@@ -134,8 +134,8 @@ const Swipe = () => {
           >
             <PreviewUserCard shownUser={shownUser} currentUser={currentUser} />
           </Animated>
-          <div className="absolute bottom-16 z-8 h-16 text-2xl w-full bg-gray-200 bg-opacity-50">
-            <div className="mt-2 w-full flex flex-row justify-around">
+          <div className="absolute bottom-14 z-8 h-16 text-2xl w-full bg-gray-200 bg-opacity-50">
+            <div className="pt-2 w-full flex flex-row justify-around">
               {showConnectForm && 
                 <>
                   <ConnectForm

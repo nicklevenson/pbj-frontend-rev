@@ -125,9 +125,8 @@ function App({cookies}) {
 
   return (
     <div className="h-[100dvh]">
-      <div className="mt-8 h-[100dvh] max-w-[100vw] overflow-x-hidden">
         {Authentication.loggedIn() && (
-          <div className="overflow-y-scroll h-full pt-8 pb-44">
+          <div className="pt-12 pb-36 mt-8 h-full overflow-y-scroll max-w-[100vw] overflow-x-hidden">
             <Outlet
               context={{
                 currentUser,
@@ -142,7 +141,6 @@ function App({cookies}) {
           </div>
         )}
         {!Authentication.loggedIn() && <Navigate to="/login" />}
-      </div>
       <Nav notifications={notifications} chatrooms={chatrooms} currentUser={currentUser} />
     </div>
   );

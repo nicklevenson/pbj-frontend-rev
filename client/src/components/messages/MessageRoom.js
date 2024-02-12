@@ -36,7 +36,7 @@ const MessageRoom = () => {
   return (
     <div className="px-4 h-full">
       {chatroom && (
-        <div className="h-[95%]">
+        <div className="h-full relative">
           <div className="flex items-center gap-4 mb-4">
             <Link to="/messages">
               <BsChevronLeft size={"2rem"} />
@@ -51,7 +51,7 @@ const MessageRoom = () => {
             </div>
           </div>
           <hr />
-          <div className="messages-container h-full overflow-y-scroll px-6">
+          <div className="messages-container h-[85%] overflow-y-scroll px-6">
             {chatroom.messages.map((message) => {
               if (message.userId === currentUser.id) {
                 return (
@@ -91,7 +91,9 @@ const MessageRoom = () => {
               }
             })}
           </div>
-          <div className="absolute bottom-20 flex justify-center bg-white w-full mt-1">
+
+
+          <div className="absolute -bottom-14 py-4 flex justify-center bg-white w-full mt-1">
             <input
               placeholder="chat"
               value={newMessage}
