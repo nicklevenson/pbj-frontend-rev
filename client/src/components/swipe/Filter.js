@@ -65,7 +65,7 @@ const Filter = ({ fetchRecs }) => {
 
   return (
     <>
-      <div onClick={() => setDisplayed(!displayed)} className="fixed top-12 z-10 bg-white w-full text-center ">
+      <div onClick={() => setDisplayed(!displayed)} className="absolute z-10 bg-white w-full text-center ">
         <BsFilter size={"2rem"} className="mx-auto" />
       </div>
         {displayed && (

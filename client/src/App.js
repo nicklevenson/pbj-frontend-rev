@@ -125,14 +125,14 @@ function App({cookies}) {
   };
 
   return (
-    <div className="h-[100svh]">
-      <div className="flex flex-row justify-center sticky w-full top-0 bg-gray-300 h-12 items-center">
+    <div className="h-[100svh] relative sticky top-0">
+      <div className="flex flex-row justify-center w-full bg-gray-300 h-12 items-center">
         <button className="relative">
           <LogoSvg />
         </button>
       </div>
         {Authentication.loggedIn() && (
-          <div className="pb-36 h-full overflow-y-scroll max-w-[100vw] overflow-x-hidden">
+          <div className="h-full overflow-y-scroll max-w-[100vw] overflow-x-hidden">
             <Outlet
               context={{
                 currentUser,

@@ -10,7 +10,7 @@ const Profile = () => {
   const { currentUser } = useOutletContext();
 
   return (
-    <div>
+    <div className="pb-36">
       {currentUser && (
         <div>
           <div className="flex">
