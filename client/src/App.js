@@ -124,9 +124,9 @@ function App({cookies}) {
   };
 
   return (
-    <div className="h-[100svh] absolute inset-0">
+    <div className="h-[100svh] sticky">
         {Authentication.loggedIn() && (
-          <div className="pt-12 pb-36 mt-8 h-full overflow-y-scroll max-w-[100vw] overflow-x-hidden">
+          <div className="pt-12 pb-36 h-full overflow-y-scroll max-w-[100vw] overflow-x-hidden">
             <Outlet
               context={{
                 currentUser,
