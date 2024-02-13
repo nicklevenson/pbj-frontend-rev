@@ -17,8 +17,8 @@ const LoginCard = () => {
     if (urlParams.get("token")) {
       const jwt = urlParams.get("token");
       const id = parseInt(urlParams.get("id"));
-      sessionStorage.setItem("jwt", jwt);
-      sessionStorage.setItem("userId", id);
+      localStorage.setItem("jwt", jwt);
+      localStorage.setItem("userId", id);
       setCookie("loggedIn", true, { path: "/", expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7) })
       if (urlParams.get("new")) {
         navigate("/welcome");

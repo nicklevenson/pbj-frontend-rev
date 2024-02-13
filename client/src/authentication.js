@@ -3,7 +3,7 @@ import UserApi from "./api/user-api";
 
 class Authentication {
   static loggedIn() {
-    return sessionStorage.userId && sessionStorage.jwt && Cookies.get("loggedIn");
+    return localStorage.userId && localStorage.jwt && Cookies.get("loggedIn");
   }
 
   static fetchUser() {
@@ -11,7 +11,7 @@ class Authentication {
   }
 
   static logout() {
-    sessionStorage.clear();
+    localStorage.clear();
     Cookies.remove("loggedIn");
   }
 }

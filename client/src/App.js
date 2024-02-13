@@ -45,13 +45,13 @@ function App({ cookies }) {
     if (currentUser) {
       setNotificationCable(
         ActionCable.createConsumer(
-          `${process.env.REACT_APP_BACKEND_URL}/notification_stream?token=${sessionStorage.jwt}`
+          `${process.env.REACT_APP_BACKEND_URL}/notification_stream?token=${localStorage.jwt}`
         )
       );
 
       setChatroomCable(
         ActionCable.createConsumer(
-          `${process.env.REACT_APP_BACKEND_URL}/chatroom_stream?token=${sessionStorage.jwt}`
+          `${process.env.REACT_APP_BACKEND_URL}/chatroom_stream?token=${localStorage.jwt}`
         )
       );
     }

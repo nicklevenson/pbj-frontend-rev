@@ -30,11 +30,11 @@ const EditPhotoModal = (props) => {
       setUploading(true);
       const formData = new FormData();
       formData.append("photo", photo);
-      const userId = sessionStorage.userId;
+      const userId = localStorage.userId;
       const configObj = {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${sessionStorage.jwt} ${userId}`,
+          Authorization: `Bearer ${localStorage.jwt} ${userId}`,
           Accept: "application/json",
           enctype: "multipart/form-data",
         },
