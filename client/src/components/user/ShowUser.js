@@ -40,7 +40,7 @@ const ShowUser = () => {
   const handleConnectionReject = () => {};
 
   return (
-    <div>
+    <div className="pb-[64px]">
       {currentUser && shownUser && (
         <div>
           <PreviewUserCard shownUser={shownUser} />
