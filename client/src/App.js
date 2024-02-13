@@ -5,9 +5,10 @@ import Authentication from "./authentication";
 import ActionCable from "actioncable";
 import camelize from "camelize";
 import { withCookies } from "react-cookie";
-import { LogoSvg } from "./components/shared/LogoSvg";
+import Div100vh from "react-div-100vh";
+import { PbjLogo } from "./components/shared/PbjLogo";
 
-function App({cookies}) {
+function App({ cookies }) {
   const [currentUser, setCurrentUser] = useState(null);
   const [notificationCable, setNotificationCable] = useState(null);
   const [notifications, setNotifications] = useState([]);
@@ -125,30 +126,39 @@ function App({cookies}) {
   };
 
   return (
-    <div className="h-[100svh] relative sticky top-0">
-      <div className="flex flex-row justify-center w-full bg-gray-300 h-12 items-center">
-        <button className="relative">
-          <LogoSvg />
-        </button>
+    <Div100vh className="overflow-y-scroll pb-48 pt-12">
+      <div className="z-0 fixed top-0 left-0 w-full">
+        <div className="flex flex-row justify-center w-full bg-gray-300 h-12 items-center">
+          <button className="relative">
+            <div className="h-auto w-6">
+            <PbjLogo />
+            </div>
+          </button>
+        </div>
       </div>
-        {Authentication.loggedIn() && (
-          <div className="h-full overflow-y-scroll max-w-[100vw] overflow-x-hidden">
-            <Outlet
-              context={{
-                currentUser,
-                attemptFetchUser,
-                logoutUser,
-                notifications,
-                notificationConnection,
-                chatrooms,
-                chatroomConnection,
-              }}
-            />
-          </div>
-        )}
-        {!Authentication.loggedIn() && <Navigate to="/login" />}
-      <Nav notifications={notifications} chatrooms={chatrooms} currentUser={currentUser} />
-    </div>
+
+      {Authentication.loggedIn() && (
+        <Outlet
+          context={{
+            currentUser,
+            attemptFetchUser,
+            logoutUser,
+            notifications,
+            notificationConnection,
+            chatrooms,
+            chatroomConnection,
+          }}
+        />
+      )}
+      {!Authentication.loggedIn() && <Navigate to="/login" />}
+      <div className="z-0 fixed bottom-0 left-0 w-full">
+        <Nav
+          notifications={notifications}
+          chatrooms={chatrooms}
+          currentUser={currentUser}
+        />
+      </div>
+    </Div100vh>
   );
 }
 
