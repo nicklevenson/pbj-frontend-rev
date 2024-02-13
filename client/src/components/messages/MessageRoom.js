@@ -34,15 +34,18 @@ const MessageRoom = () => {
   };
 
   return (
-    <div className="px-4 py-2 h-full">
+    <div className="h-full">
       {chatroom && (
-        <div className="h-[80%] relative">
-          <div className="flex items-center gap-4 mb-4">
+        <div className="flex flex-col relative h-full">
+          <div className="p-4 flex items-center gap-4 border-b border-b-slate-200">
             <Link to="/messages">
               <BsChevronLeft size={"2rem"} />
             </Link>
             <img
-              src={chatroom.otherUserInfo.info.photo || `${process.env.REACT_APP_BACKEND_URL}/userDefault.png`}
+              src={
+                chatroom.otherUserInfo.info.photo ||
+                `${process.env.REACT_APP_BACKEND_URL}/userDefault.png`
+              }
               className="rounded-full h-12"
             />
 
@@ -50,8 +53,7 @@ const MessageRoom = () => {
               {chatroom.otherUserInfo.info.username}
             </div>
           </div>
-          <hr />
-          <div className="messages-container h-[85%] overflow-y-scroll px-6">
+          <div className="p-4 flex-1 messages-container overflow-y-scroll px-6">
             {chatroom.messages.map((message) => {
               if (message.userId === currentUser.id) {
                 return (
@@ -66,7 +68,10 @@ const MessageRoom = () => {
                     </div>
 
                     <img
-                      src={currentUser.photo || `${process.env.REACT_APP_BACKEND_URL}/userDefault.png`}
+                      src={
+                        currentUser.photo ||
+                        `${process.env.REACT_APP_BACKEND_URL}/userDefault.png`
+                      }
                       className="rounded-full h-12"
                     />
                   </div>
@@ -75,7 +80,10 @@ const MessageRoom = () => {
                 return (
                   <div className="w-full flex items-center">
                     <img
-                      src={chatroom.otherUserInfo.info.photo ||  `${process.env.REACT_APP_BACKEND_URL}/userDefault.png`}
+                      src={
+                        chatroom.otherUserInfo.info.photo ||
+                        `${process.env.REACT_APP_BACKEND_URL}/userDefault.png`
+                      }
                       className="rounded-full h-12"
                     />
                     <div>
@@ -92,8 +100,7 @@ const MessageRoom = () => {
             })}
           </div>
 
-
-          <div className="absolute -bottom-14 py-4 flex justify-center bg-white w-full mt-1">
+          <div className="p-4 flex justify-center bg-white w-full">
             <input
               placeholder="chat"
               value={newMessage}
