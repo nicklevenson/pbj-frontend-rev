@@ -57,7 +57,7 @@ const WelcomeStepOne = () => {
   }
 
   return (
-    <Div100vh>
+    <Div100vh className="z-20 fixed top-0 left-0 w-full">
       <div className="flex flex-col bg-white relative z-50 h-full overflow-y-scroll">
         <section className="flex-1">
           <h1 className="mt-8 text-2xl font-bold mb-4 text-center">Let's get some peanut butter on that sandwich</h1>
