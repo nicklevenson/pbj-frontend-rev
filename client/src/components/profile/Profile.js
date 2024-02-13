@@ -13,8 +13,8 @@ const Profile = () => {
     <div className="pb-36">
       {currentUser && (
         <div>
-          <div className="flex">
-            <h1 className="text-xl mb-4 font-bold px-4">Profile</h1>
+          <div className="flex p-4">
+            <h1 className="text-xl font-bold">Profile</h1>
             <span
               className="ml-auto px-4"
               onClick={() => setLogoutPrompt((prev) => !prev)}

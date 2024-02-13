@@ -34,7 +34,7 @@ const Connections = () => {
 
   return (
     <div>
-      <h1 className="text-xl mb-4 font-bold px-4">Connections</h1>
+      <h1 className="text-xl mb-4 font-bold p-4">Connections</h1>
       <div>
         {connectedUsers?.length > 0 &&
           renderConnectionSection(connectedUsers, "Connected With")}

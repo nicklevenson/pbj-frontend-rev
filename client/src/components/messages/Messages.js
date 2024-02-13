@@ -25,7 +25,7 @@ const Messages = () => {
 
   return (
     <div className="px-4">
-      <h1 className="text-xl mb-4 font-bold">Messages</h1>
+      <h1 className="py-4 text-xl mb-4 font-bold">Messages</h1>
       {chatrooms && (
         <div>
           {orderedChatrooms.map((chatroom) => {
