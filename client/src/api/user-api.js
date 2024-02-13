@@ -3,12 +3,12 @@ import $ from "jquery";
 class UserApi {
   static fetchUser = () => {
     console.log("fetching user");
-    const userId = localStorage.userId;
+    const userId = sessionStorage.userId;
 
     const request = $.ajax({
       method: "GET",
       headers: {
-        Authorization: `Bearer ${localStorage.jwt} ${localStorage.userId}`,
+        Authorization: `Bearer ${sessionStorage.jwt} ${sessionStorage.userId}`,
       },
       url: `${process.env.REACT_APP_BACKEND_URL}/users/${userId}`,
     });
@@ -18,7 +18,7 @@ class UserApi {
 
   static fetchUserRecs = (filters = {}) => {
     console.log("fetching user recs");
-    const userId = localStorage.userId;
+    const userId = sessionStorage.userId;
     const range = filters.range ? `range=${filters.range}&` : "";
     const instruments = filters.instruments
       ? filters.instruments.map((i) => `instruments[]=${i}&`).join("")
@@ -30,7 +30,7 @@ class UserApi {
     const request = $.ajax({
       method: "GET",
       headers: {
-        Authorization: `Bearer ${localStorage.jwt} ${localStorage.userId}`,
+        Authorization: `Bearer ${sessionStorage.jwt} ${sessionStorage.userId}`,
       },
       url: `${process.env.REACT_APP_BACKEND_URL}/users/${userId}/recommended_users?${range}${instruments}${genres}`,
     });
@@ -44,9 +44,9 @@ class UserApi {
     const request = $.ajax({
       method: "GET",
       headers: {
-        Authorization: `Bearer ${localStorage.jwt} ${localStorage.userId}`,
+        Authorization: `Bearer ${sessionStorage.jwt} ${sessionStorage.userId}`,
       },
-      url: `${process.env.REACT_APP_BACKEND_URL}/users/${localStorage.userId}/get_supporting_info/${id}`,
+      url: `${process.env.REACT_APP_BACKEND_URL}/users/${sessionStorage.userId}/get_supporting_info/${id}`,
     });
 
     return request;
@@ -58,11 +58,11 @@ class UserApi {
     const request = $.ajax({
       method: "POST",
       headers: {
-        Authorization: `Bearer ${localStorage.jwt} ${localStorage.userId}`,
+        Authorization: `Bearer ${sessionStorage.jwt} ${sessionStorage.userId}`,
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      url: `${process.env.REACT_APP_BACKEND_URL}/users/${localStorage.userId}/request_connection`,
+      url: `${process.env.REACT_APP_BACKEND_URL}/users/${sessionStorage.userId}/request_connection`,
       data: JSON.stringify({ requested_id: requested_id }),
     });
 
@@ -75,11 +75,11 @@ class UserApi {
     const request = $.ajax({
       method: "POST",
       headers: {
-        Authorization: `Bearer ${localStorage.jwt} ${localStorage.userId}`,
+        Authorization: `Bearer ${sessionStorage.jwt} ${sessionStorage.userId}`,
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      url: `${process.env.REACT_APP_BACKEND_URL}/users/${localStorage.userId}/accept_connection`,
+      url: `${process.env.REACT_APP_BACKEND_URL}/users/${sessionStorage.userId}/accept_connection`,
       data: JSON.stringify({ requesting_user_id: requestingUserId }),
     });
 
@@ -92,11 +92,11 @@ class UserApi {
     const request = $.ajax({
       method: "POST",
       headers: {
-        Authorization: `Bearer ${localStorage.jwt} ${localStorage.userId}`,
+        Authorization: `Bearer ${sessionStorage.jwt} ${sessionStorage.userId}`,
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      url: `${process.env.REACT_APP_BACKEND_URL}/users/${localStorage.userId}/update_tag`,
+      url: `${process.env.REACT_APP_BACKEND_URL}/users/${sessionStorage.userId}/update_tag`,
       data: JSON.stringify({ name: name, kind: kind, update_type: action }),
     });
 
@@ -155,11 +155,11 @@ class UserApi {
     const request = $.ajax({
       method: "PATCH",
       headers: {
-        Authorization: `Bearer ${localStorage.jwt} ${localStorage.userId}`,
+        Authorization: `Bearer ${sessionStorage.jwt} ${sessionStorage.userId}`,
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      url: `${process.env.REACT_APP_BACKEND_URL}/users/${localStorage.userId}`,
+      url: `${process.env.REACT_APP_BACKEND_URL}/users/${sessionStorage.userId}`,
       data: JSON.stringify({ user: values }),
     });
 
