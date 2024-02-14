@@ -59,7 +59,7 @@ const MessageRoom = () => {
                 return (
                   <div className="w-full flex items-center justify-end">
                     <div>
-                      <div className="bg-blue-200 p-2 rounded m-2 w-max ml-auto">
+                      <div className="bg-blue-200 p-2 rounded m-2 max-w-full ml-auto">
                         {message.content}
                       </div>
                       <div className="text-xs text-gray-400">
@@ -87,7 +87,7 @@ const MessageRoom = () => {
                       className="rounded-full h-12"
                     />
                     <div>
-                      <div className="bg-blue-200 p-2 rounded m-2 w-max">
+                      <div className="bg-blue-200 p-2 rounded m-2 max-w-full">
                         {message.content}
                       </div>
                       <div className="text-xs text-gray-400">
