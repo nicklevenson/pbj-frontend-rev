@@ -47,7 +47,7 @@ const LoginCard = () => {
             <h1 className="font-bold text-xl">
               Welcome to Peanut Butter & Jam!
             </h1>
-            <p className="mt-1 text-smx">
+            <p className="mt-1">
               We are a music-based social networking app. We match you with
               folks who have similar music taste to you.
             </p>
@@ -56,7 +56,7 @@ const LoginCard = () => {
 
         <div className="mx-auto max-w-[600px] px-6 mt-4">
           <h2 className="font-bold text-xl">How it works</h2>
-          <ol className="mt-2 flex flex-col gap-3 text-smx">
+          <ol className="mt-2 flex flex-col gap-3">
             <li className="flex gap-3 items-center justify-start">
               <div className="bg-slate-100 p-2 rounded-md w-10 h-10 flex items-center justify-center">
                 <FaSpotify size="1.5em" className="text-slate-950" />
@@ -120,7 +120,7 @@ const LoginCard = () => {
                 <div className="p-4 bg-black text-white font-semibold rounded-full">
                   <div className="flex items-center justify-center gap-4">
                     <FaSpotify color="#1cd760" style={{ fontSize: "1.5em" }} />
-                    <div>Continue With Spotify</div>
+                    <div>Continue with Spotify</div>
                   </div>
                 </div>
               </a>
@@ -134,7 +134,7 @@ const LoginCard = () => {
                     <div className="h-auto w-6">
                       <GoogleIcon />
                     </div>
-                    <div>Continue With Google</div>
+                    <div>Continue with Google</div>
                   </div>
                 </div>
               </a>
