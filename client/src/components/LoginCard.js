@@ -29,9 +29,11 @@ const LoginCard = () => {
   };
   return (
     <div>
-      <div className="flex flex-row justify-center absolute w-full top-0 bg-gray-300 h-12 items-center">
+      <div className="border-b border-slate-200 flex flex-row justify-center w-full bg-white h-12 items-center">
         <button className="relative">
-          <LogoSvg />
+          <div className="h-auto w-6">
+            <PbjLogo />
+          </div>
         </button>
       </div>
       <div className="mt-20 max-w-[600px] mx-auto">
