@@ -38,13 +38,11 @@
     @apply items-center;
     @apply justify-center;
   }
-
   .button-black {
     @apply button-base;
     @apply bg-black;
     @apply text-white;
   }
-
   .button-black:hover,
   .button-black:focus {
     @apply bg-gray-800;
@@ -54,12 +52,19 @@
     @apply bg-blue-500;
     @apply text-white;
   }
-
   .button-blue:hover,
   .button-blue:focus {
     @apply bg-blue-600;
   }
-
+  .button-indigo {
+    @apply button-base;
+    @apply bg-indigo-500;
+    @apply text-white;
+  }
+  .button-indigo:hover,
+  .button-indigo:focus {
+    @apply bg-indigo-600;
+  }
   .button-outlined {
     @apply button-base;
     @apply bg-white;
@@ -111,16 +116,23 @@
     @apply inline-flex;
     @apply text-sm;
   }
-
   .tag-blue {
     @apply tag-base;
     @apply bg-blue-400;
     @apply text-white;
   }
-
   .tag-blue:hover,
   .tag-blue:focus {
     @apply bg-blue-500;
+  }
+  .tag-teal {
+    @apply tag-base;
+    @apply bg-teal-400;
+    @apply text-white;
+  }
+  .tag-teal:hover,
+  .tag-teal:focus {
+    @apply bg-teal-500;
   }
 }
 
