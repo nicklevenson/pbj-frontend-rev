@@ -33,9 +33,11 @@ const EditableUserCard = () => {
   return (
     <div className="max-w-[600px] mx-auto">
       <div>
-        <div>
+        <div className="">
           <UserPhoto userInfo={currentUser} />
-          <EditPhoto />
+          <div className="inner-container">
+            <EditPhoto />
+          </div>
         </div>
         <div className="mx-2 my-4">
           <div className="flex">
@@ -63,18 +65,30 @@ const EditableUserCard = () => {
         </div>
       </div>
       <div className="font-bold mx-2">
-        {incognito ?
+        {incognito ? (
           <div className="flex">
             <span className="mr-1 mt-1">Incognito mode</span>
-            <span><FaToggleOn size={"2rem"} onClick={() => handleIncogneto(false)} /></span>
+            <span>
+              <FaToggleOn
+                size={"2rem"}
+                onClick={() => handleIncogneto(false)}
+              />
+            </span>
           </div>
-          :
+        ) : (
           <div className="flex">
             <span className="mr-1 mt-1">Incognito mode</span>
-            <span><FaToggleOff size={"2rem"} onClick={() => handleIncogneto(true)} /></span>
+            <span>
+              <FaToggleOff
+                size={"2rem"}
+                onClick={() => handleIncogneto(true)}
+              />
+            </span>
           </div>
-        }
-        <span className="text-xs italic font-normal">User will not be able to see your profile when in incognito mode</span>
+        )}
+        <span className="text-xs italic font-normal">
+          User will not be able to see your profile when in incognito mode
+        </span>
       </div>
     </div>
   );
