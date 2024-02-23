@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from "react";
-import PreviewUserCard from "../swipe/PreviewUserCard";
 import { useNavigate, useOutletContext } from "react-router-dom";
-import UserApi from "../../api/user-api";
 import camelize from "camelize";
+import Div100vh from "react-div-100vh";
+import PreviewUserCard from "../swipe/PreviewUserCard";
+import UserApi from "../../api/user-api";
 
 const Finish = () => {
   const navigate = useNavigate();
   const { currentUser } = useOutletContext();
   const [shownUser, setShownUser] = useState(null);
 
-   useEffect(() => {
+  useEffect(() => {
     fetchShownUser();
-   }, [currentUser]);
-   
+  }, [currentUser]);
+
   const fetchShownUser = async () => {
     const id = currentUser.id;
     if (id) {
@@ -21,44 +22,61 @@ const Finish = () => {
       setShownUser(info);
     }
   };
-  
+
   if (!currentUser) return null;
 
   return (
-    <div className="absolute inset-0 bg-gray-200 w-full z-10 overflow-y-scroll pb-28">
-      <div className="mt-8">
-        <h1 className="text-2xl font-bold mb-4 text-center">You're ready to get jamming!</h1>
-        <p className="text-gray-700 text-center">
-          This is how your profile will appear to others. You can always edit your profile later.
-        </p>
+    <Div100vh className="z-10 overflow-y-scroll fixed top-0 left-0 w-full bg-white">
+      <div className="flex flex-col h-full">
+        <div className="bg-gradient-animation text-white pt-12">
+          <div className="inner-container flex items-end justify-start">
+            <h1 className="text-xl font-bold">You're ready to get jamming!</h1>
+          </div>
+        </div>
 
-        <hr className="my-8" />
+        <div>
+          <div className="inner-container">
+            <p>
+              This is how your profile will appear to others. You can always
+              edit your profile later.
+            </p>
+          </div>
+        </div>
 
-        {shownUser && <PreviewUserCard shownUser={shownUser} currentUser={currentUser} showSimilar={false} />}
+        <div>
+          {shownUser && (
+            <PreviewUserCard
+              shownUser={shownUser}
+              currentUser={currentUser}
+              showSimilar={false}
+            />
+          )}
+        </div>
+
+        <div className="sticky bottom-0 bg-white bg-opacity-90">
+          <div className="inner-container">
+            <div className="max-w-[350px] mx-auto flex gap-4">
+              <button
+                className="flex-1 button-outlined"
+                onClick={() => {
+                  navigate("/welcome/step3");
+                }}
+              >
+                Go Back
+              </button>
+              <button
+                className="flex-1 button-blue"
+                onClick={() => {
+                  navigate("/swipe");
+                }}
+              >
+                Start Swiping
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
-
-      <div className="fixed z-[10000] bottom-16 w-full flex">
-        <button
-          className="bg-green-500 text-white rounded p-2 w-[80%] mx-auto"
-          onClick={() => {
-            navigate("/welcome/step3");
-          }}
-        >
-          Go Back
-        </button>
-      </div>
-
-      <div className="fixed z-[10000] bottom-4 w-full flex">
-        <button
-          className="bg-blue-500 text-white rounded p-2 w-[80%] mx-auto"
-          onClick={() => {
-            navigate("/swipe");
-          }}
-        >
-          Start Swiping
-        </button>
-      </div>
-    </div>
+    </Div100vh>
   );
 };
 
