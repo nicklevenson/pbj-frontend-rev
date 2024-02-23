@@ -8,6 +8,7 @@ import { MdSwipe } from "react-icons/md";
 import { PbjLogo } from "./shared/PbjLogo";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
+import Div100vh from "react-div-100vh";
 
 const LoginCard = () => {
   const navigate = useNavigate();
@@ -33,17 +34,17 @@ const LoginCard = () => {
     }
   };
   return (
-    <div>
-      <div className="border-b border-slate-200 flex flex-row justify-center w-full bg-white h-12 items-center">
+    <Div100vh>
+      <div className="fixed top-0 border-b border-slate-200 flex flex-row justify-center w-full bg-white h-12 items-center">
         <button className="relative">
           <div className="h-auto w-6">
             <PbjLogo />
           </div>
         </button>
       </div>
-      <div className="mx-auto">
-        <div className="bg-gradient-animation text-white">
-          <div className="mx-auto max-w-[600px] px-6 py-4">
+      <div className="overflow-y-scroll mx-auto">
+        <div className="bg-gradient-animation text-white pt-12">
+          <div className="inner-container py-6">
             <h1 className="font-bold text-xl">
               Welcome to Peanut Butter & Jam!
             </h1>
@@ -54,7 +55,7 @@ const LoginCard = () => {
           </div>
         </div>
 
-        <div className="mx-auto max-w-[600px] px-6 mt-4">
+        <div className="inner-container">
           <h2 className="font-bold text-xl">How it works</h2>
           <ol className="mt-2 flex flex-col gap-3">
             <li className="flex gap-3 items-center justify-start">
@@ -105,7 +106,7 @@ const LoginCard = () => {
           </ol>
         </div>
 
-        <div className="mx-auto max-w-[600px] px-6">
+        <div className="inner-container pt-0">
           <div className="max-w-[350px] mx-auto text-center">
             <div className="mt-6 text-xs text-slate-900 px-10">
               <i>
@@ -117,7 +118,7 @@ const LoginCard = () => {
               <a
                 href={`${process.env.REACT_APP_BACKEND_URL}/authenticate-spotify`}
               >
-                <div className="p-4 bg-black text-white font-semibold rounded-full">
+                <div className="button-black px-5">
                   <div className="flex items-center justify-center gap-4">
                     <FaSpotify color="#1cd760" style={{ fontSize: "1.5em" }} />
                     <div>Continue with Spotify</div>
@@ -129,7 +130,7 @@ const LoginCard = () => {
               <a
                 href={`${process.env.REACT_APP_BACKEND_URL}/authenticate-google`}
               >
-                <div className="p-4 bg-black text-white font-semibold rounded-full">
+                <div className="button-black px-5">
                   <div className="flex items-center justify-center gap-4">
                     <div className="h-auto w-6">
                       <GoogleIcon />
@@ -142,7 +143,7 @@ const LoginCard = () => {
           </div>
         </div>
       </div>
-    </div>
+    </Div100vh>
   );
 };
 
