@@ -1,10 +1,9 @@
-
 import React, { useEffect, useState } from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
-import UserApi from "../../api/user-api";
+import Div100vh from "react-div-100vh";
 import EditableField from "../profile/EditableField";
 import LocationField from "../profile/LocationField";
-import Div100vh from 'react-div-100vh'
+import UserApi from "../../api/user-api";
 
 const WelcomeStepOne = () => {
   const { currentUser, attemptFetchUser } = useOutletContext();
@@ -57,12 +56,18 @@ const WelcomeStepOne = () => {
   }
 
   return (
-    <Div100vh className="z-20 fixed top-0 left-0 w-full">
-      <div className="flex flex-col bg-white relative z-50 h-full overflow-y-scroll">
-        <section className="flex-1">
-          <h1 className="mt-8 text-2xl font-bold mb-4 text-center">Let's get some peanut butter on that sandwich</h1>
-          <div>
-            <div className="my-8"></div>
+    <Div100vh className="z-10 overflow-y-scroll fixed top-0 left-0 w-full bg-white">
+      <div className="flex flex-col h-full">
+        <div className="bg-gradient-animation pt-12">
+          <div className="inner-container flex items-end justify-start">
+            <h1 className="text-white text-xl font-bold">
+              Let's get some peanut butter on that sandwich
+            </h1>
+          </div>
+        </div>
+
+        <div className="flex-1">
+          <div className="inner-container flex flex-col gap-8">
             <EditableField
               labelName="Username"
               placeholder={username}
@@ -70,12 +75,10 @@ const WelcomeStepOne = () => {
               setNewFormValue={setNewFormValue}
               value={formValues.username}
             />
-            <div className="my-8"></div>
             <LocationField
               placeholder={location}
               setNewFormValue={setNewFormValue}
             />
-            <div className="my-8"></div>
             <EditableField
               labelName="Bio"
               placeholder={bio}
@@ -84,36 +87,38 @@ const WelcomeStepOne = () => {
               value={formValues.bio}
             />
           </div>
-        </section>
+        </div>
 
-        <section className="xfixed bottom-0 left-0 w-full bg-slate-100 p-4">
-          <div className="flex flex-col gap-4">
-            <button
-              className="bg-green-500 text-white rounded p-2 hover:bg-green-700"
-              onClick={() => {
-                navigate("/welcome");
-              }}
-            >
-              Go Back
-            </button>
+        <div>
+          <div className="inner-container">
+            <div className="max-w-[350px] mx-auto flex gap-4">
+              <button
+                className="flex-1 button-outlined"
+                onClick={() => {
+                  navigate("/welcome");
+                }}
+              >
+                Go Back
+              </button>
 
-            <button className={`${formDisabled ? 'bg-gray-300' : 'bg-blue-500 hover:bg-blue-700'} text-white rounded p-2`}
-              onClick={() => {
-                UserApi.updateUser(formValues).then(() => {
-                  attemptFetchUser();
-                  navigate("/welcome/step2");
-                });
-              }}
-              disabled={formDisabled}
-            >
-              Next
-            </button>
+              <button
+                className={formDisabled ? "flex-1 button-disabled" : "flex-1 button-blue"}
+                onClick={() => {
+                  UserApi.updateUser(formValues).then(() => {
+                    attemptFetchUser();
+                    navigate("/welcome/step2");
+                  });
+                }}
+                disabled={formDisabled}
+              >
+                Next
+              </button>
+            </div>
           </div>
-        </section>
-
+        </div>
       </div>
     </Div100vh>
   );
-}
+};
 
 export default WelcomeStepOne;

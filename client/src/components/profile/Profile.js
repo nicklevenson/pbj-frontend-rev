@@ -13,15 +13,18 @@ const Profile = () => {
     <div className="pb-36">
       {currentUser && (
         <div>
-          <div className="flex p-4">
-            <h1 className="text-xl font-bold">Profile</h1>
-            <span
-              className="ml-auto px-4"
-              onClick={() => setLogoutPrompt((prev) => !prev)}
-            >
-              <FiLogOut size={"2rem"} />
-            </span>
+          <div className="inner-container py-1">
+            <div className="flex items-center justify-between">
+              <h1 className="text-xl font-bold">Profile</h1>
+              <span
+                className="p-2"
+                onClick={() => setLogoutPrompt((prev) => !prev)}
+              >
+                <FiLogOut size={"2rem"} />
+              </span>
+            </div>
           </div>
+
           <EditableUserCard />
           {logoutPrompt && <LogoutModal setLogoutPrompt={setLogoutPrompt} />}
         </div>
