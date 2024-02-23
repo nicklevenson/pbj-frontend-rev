@@ -127,8 +127,8 @@ function App({ cookies }) {
 
   return (
     <Div100vh className="overflow-y-scroll pb-[64px] pt-12">
-      <div className="z-10 fixed top-0 left-0 w-full">
-        <div className="flex flex-row justify-center w-full bg-gray-300 h-12 items-center">
+      <div className="z-20 fixed top-0 left-0 w-full">
+        <div className="border-b border-slate-200 flex flex-row justify-center w-full bg-white h-12 items-center">
           <button className="relative">
             <div className="h-auto w-6">
               <PbjLogo />

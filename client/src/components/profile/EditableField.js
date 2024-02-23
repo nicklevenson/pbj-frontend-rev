@@ -8,8 +8,8 @@ const EditableField = ({
   formKey,
 }) => {
   return (
-    <div className="text-center w-[80%] mx-auto">
-      <label className="font-bold" htmlFor={labelName}>
+    <div>
+      <label className="font-semibold" htmlFor={labelName}>
         {labelName}
       </label>
       <br />

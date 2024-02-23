@@ -22,12 +22,12 @@ const GenreSelection = ({ list, setGenresCallback, title="Genres", submitable=fa
   };
 
   return (
-    <div className="w-[80%] mx-auto">
-      <label className="font-bold" htmlFor="genres filter">
+    <div>
+      <label className="font-semibold" htmlFor="genres filter">
         {title}
       </label>
       <br />
-      <div className="flex">
+      <div className="flex gap-2">
         <input
           name="genres filter"
           className="border border-solid rounded p-2 w-full"
@@ -40,16 +40,16 @@ const GenreSelection = ({ list, setGenresCallback, title="Genres", submitable=fa
         />
 
 
-        {submitable ? <button className="ml-1 bg-green-300 p-2 rounded" onClick={() => setGenresCallback(inputQuery)}>Add</button> : null}
+        {submitable ? <button className="button-blue px-6" onClick={() => setGenresCallback(inputQuery)}>Add</button> : null}
       </div>
       <div
         onClick={(e) => handleClick(e)}
-        className="bg-gray-200 text-left overflow-y-scroll max-h-32 w-full"
+        className="bg-slate-200 text-left overflow-y-scroll max-h-32 w-full"
       >
         {inputQuery !== ""
           ? results.map((result) => {
               return (
-                <div className="p-2  border-b broder border-gray-300">
+                <div className="p-2 border-b border-slate-300 text-slate-950">
                   {result}
                 </div>
               );

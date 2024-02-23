@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import PreviewUserCard from "../swipe/PreviewUserCard";
 import ConnectForm from "./ConnectForm";
 import { useOutletContext, useParams, useNavigate } from "react-router-dom";
+import Div100vh from "react-div-100vh";
 import UserApi from "../../api/user-api";
 import camelize from "camelize";
 
@@ -40,20 +41,24 @@ const ShowUser = () => {
   const handleConnectionReject = () => {};
 
   return (
-    <div className="pb-[64px]">
+    <div>
       {currentUser && shownUser && (
         <div>
-          <PreviewUserCard shownUser={shownUser} />
-          <div className="absolute bottom-16 z-8 h-16 text-2xl w-full bg-gray-200 bg-opacity-50">
-            <div className="mt-2 w-full flex flex-row justify-around flex-nowrap">
-              <ConnectForm
-                currentUser={currentUser}
-                shownUser={shownUser}
-                handleMessageLink={handleMessageLink}
-                handleConnectionRequest={handleConnectionRequest}
-                handleConnectionAccept={handleConnectionAccept}
-                handleConnectionReject={handleConnectionReject}
-              />
+          <Div100vh className="overflow-y-scroll pb-48">
+            <PreviewUserCard shownUser={shownUser} />
+          </Div100vh>
+          <div className="sticky bottom-0 bg-white bg-opacity-90">
+            <div className="inner-container">
+              <div className="flex flex-row justify-around flex-nowrap">
+                <ConnectForm
+                  currentUser={currentUser}
+                  shownUser={shownUser}
+                  handleMessageLink={handleMessageLink}
+                  handleConnectionRequest={handleConnectionRequest}
+                  handleConnectionAccept={handleConnectionAccept}
+                  handleConnectionReject={handleConnectionReject}
+                />
+              </div>
             </div>
           </div>
         </div>

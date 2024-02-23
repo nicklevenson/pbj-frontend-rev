@@ -1,6 +1,7 @@
 import React, { useState, useLayoutEffect } from "react";
 import { useOutletContext } from "react-router-dom";
 import { BsChevronLeft } from "react-icons/bs";
+import Div100vh from "react-div-100vh";
 import EditableField from "./EditableField";
 import LocationField from "./LocationField";
 import InstrumentSelection from "../shared/InstrumentSelection";
@@ -74,134 +75,171 @@ const EditModal = ({ setEditModal }) => {
   useLayoutEffect(() => {
     setLists();
   }, []);
-  
+
 
   const updateTag = (name, kind, action) => {
     UserApi.updateTag(name, kind, action)
       .then(() => {
-        attemptFetchUser();
+      attemptFetchUser();
       }
     );
   }
 
   return (
-    <div className="absolute inset-0 bg-gray-200 w-full h-full z-10 overflow-y-scroll pb-16">
-      <div onClick={() => setEditModal((prev) => !prev)}>
-        <BsChevronLeft size={"2rem"} />
-      </div>
-      <div>
-        <EditableField
-          labelName="Username"
-          placeholder={username}
-          formKey="username"
-          setNewFormValue={setNewFormValue}
-          value={formValues.username}
-        />
-        <LocationField
-          placeholder={location}
-          setNewFormValue={setNewFormValue}
-        />
-        <EditableField
-          labelName="Bio"
-          placeholder={bio}
-          formKey="bio"
-          setNewFormValue={setNewFormValue}
-          value={formValues.bio}
-        />
-
-        <InstrumentSelection
-          list={instrumentsList.filter((i) => !instruments.includes(i))}
-          setInstrumentsCallback={setInstrumentsCallback}
-          sumbitable={true}
-        />
-
-        <div className="w-[80%] mx-auto">
-          {instruments.map((inst) => {
-            return <GenericTag tag={inst.name} key={Math.random() + inst.name} editable={true} removeTag={() =>
-              updateTag(inst.name, "instrument", "remove")
-            } />;
-          })}
+    <Div100vh className="z-10 overflow-y-scroll fixed top-0 left-0 w-full bg-slate-50">
+      <div className="pt-12">
+        <div className="inner-container py-3">
+          <div className="flex gap-4 items-center justify-start">
+            <div className="-ml-3" onClick={() => setEditModal((prev) => !prev)}>
+              <BsChevronLeft size={"2rem"} />
+            </div>
+            <h1 className="text-xl font-bold">Edit Profile</h1>
+          </div>
         </div>
 
-        <GenreSelection
-          list={genresList.filter((g) => !genres.includes(g))}
-          setGenresCallback={setGenresCallback}
-          submitable={true}
-        />
+        <div className="inner-container pt-2">
+          <div className="flex flex-col gap-6">
+            <EditableField
+              labelName="Username"
+              placeholder={username}
+              formKey="username"
+              setNewFormValue={setNewFormValue}
+              value={formValues.username}
+            />
+            <LocationField
+              placeholder={location}
+              setNewFormValue={setNewFormValue}
+            />
+            <EditableField
+              labelName="Bio"
+              placeholder={bio}
+              formKey="bio"
+              setNewFormValue={setNewFormValue}
+              value={formValues.bio}
+            />
 
-        <div className="w-[80%] mx-auto">
-          {genres.map((genre) => {
-            return <GenericTag tag={genre.name} key={Math.random() + genre.name} editable={true} removeTag={() =>
-              updateTag(genre.name, "genre", "remove")
-            } />;
-          })}
+            <div className="flex flex-col gap-2">
+              <InstrumentSelection
+                list={instrumentsList.filter((i) => !instruments.includes(i))}
+                setInstrumentsCallback={setInstrumentsCallback}
+                submitable={true}
+              />
+
+              <div className="flex gap-2 flex-wrap">
+                {instruments.map((inst) => {
+                  return (
+                    <GenericTag
+                      tag={inst.name}
+                      key={Math.random() + inst.name}
+                      editable={true}
+                      removeTag={() =>
+                        updateTag(inst.name, "instrument", "remove")
+                      }
+                    />
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <GenreSelection
+                list={genresList.filter((g) => !genres.includes(g))}
+                setGenresCallback={setGenresCallback}
+                submitable={true}
+              />
+
+              <div className="flex gap-2 flex-wrap">
+                {genres.map((genre) => {
+                  return (
+                    <GenericTag
+                      tag={genre.name}
+                      key={Math.random() + genre.name}
+                      editable={true}
+                      removeTag={() => updateTag(genre.name, "genre", "remove")}
+                    />
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <GenericSelection
+                list={genericList.filter((g) => !generic.includes(g))}
+                setGenericsCallback={setGenericCallback}
+                submitable={true}
+              />
+
+              <div className="flex gap-2 flex-wrap">
+                {generic.map((gen) => {
+                  return (
+                    <GenericTag
+                      tag={gen.name}
+                      key={Math.random() + gen.name}
+                      editable={true}
+                      removeTag={() => updateTag(gen.name, "generic", "remove")}
+                    />
+                  );
+                })}
+              </div>
+            </div>
+
+            <EditableField
+              labelName="Link to your Spotify page"
+              placeholder={spotifyLink}
+              formKey="spotifyLink"
+              setNewFormValue={setNewFormValue}
+              value={formValues.spotifyLink}
+            />
+            <EditableField
+              labelName="Link to your SoundCloud"
+              placeholder={soundcloudLink}
+              formKey="soundcloudLink"
+              setNewFormValue={setNewFormValue}
+              value={formValues.soundcloudLink}
+            />
+            <EditableField
+              labelName="Link to your Bandcamp"
+              placeholder={bandcampLink}
+              formKey="bandcampLink"
+              setNewFormValue={setNewFormValue}
+              value={formValues.bandcampLink}
+            />
+            <EditableField
+              labelName="Link to your Instagram"
+              placeholder={instagramLink}
+              formKey="instagramLink"
+              setNewFormValue={setNewFormValue}
+              value={formValues.instagramLink}
+            />
+            <EditableField
+              labelName="Link to your Apple Music"
+              placeholder={appleMusicLink}
+              formKey="appleMusicLink"
+              setNewFormValue={setNewFormValue}
+              value={formValues.appleMusicLink}
+            />
+          </div>
         </div>
 
-        <GenericSelection
-          list={genericList.filter((g) => !generic.includes(g))}
-          setGenericsCallback={setGenericCallback}
-          submitable={true}
-        />
-          
-        <div className="w-[80%] mx-auto">
-          {generic.map((gen) => {
-            return <GenericTag tag={gen.name} key={Math.random() + gen.name} editable={true} removeTag={() =>
-              updateTag(gen.name, "generic", "remove")
-            } />;
-          })}
+        <div className="sticky bottom-0 bg-white bg-opacity-90">
+          <div className="inner-container">
+            <div className="max-w-[350px] mx-auto flex gap-4">
+              <button
+                className="flex-1 button-blue"
+                onClick={() => {
+                  UserApi.updateUser(formValues).then(() => {
+                    setEditModal((prev) => !prev);
+                    attemptFetchUser();
+                  });
+                }}
+              >
+                Save Changes
+              </button>
+            </div>
+          </div>
         </div>
-
-        <EditableField
-          labelName="Link to your spotify page"
-          placeholder={spotifyLink}
-          formKey="spotifyLink"
-          setNewFormValue={setNewFormValue}
-          value={formValues.spotifyLink}
-        />
-        <EditableField
-          labelName="Link to your soundcloud"
-          placeholder={soundcloudLink}
-          formKey="soundcloudLink"
-          setNewFormValue={setNewFormValue}
-          value={formValues.soundcloudLink}
-        />
-        <EditableField
-          labelName="Link to your bandcamp"
-          placeholder={bandcampLink}
-          formKey="bandcampLink"
-          setNewFormValue={setNewFormValue}
-          value={formValues.bandcampLink}
-        />
-        <EditableField
-          labelName="Link to your instagram"
-          placeholder={instagramLink}
-          formKey="instagramLink"
-          setNewFormValue={setNewFormValue}
-          value={formValues.instagramLink}
-        />
-        <EditableField
-          labelName="Link to your apple music"
-          placeholder={appleMusicLink}
-          formKey="appleMusicLink"
-          setNewFormValue={setNewFormValue}
-          value={formValues.appleMusicLink}
-        />
- 
       </div>
-
-      <div className="fixed z-[10000] bottom-4 w-full flex">
-        <button className="bg-blue-500 text-white rounded p-2 w-[80%] mx-auto"
-          onClick={() => {
-            UserApi.updateUser(formValues).then(() => {
-              setEditModal((prev) => !prev);
-              attemptFetchUser();
-            });
-          }}
-        >
-          Save Changes
-        </button>
-      </div>
-    </div>
+    </Div100vh>
   );
 };
 
