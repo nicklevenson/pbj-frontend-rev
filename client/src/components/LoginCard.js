@@ -143,6 +143,12 @@ const LoginCard = () => {
           </div>
         </div>
       </div>
+
+      <div className="fixed bottom-0 w-full text-center text-xs">
+        <a href="https://www.termsfeed.com/live/d6ab7a46-b8e7-4d06-bcaa-d6e80093445c" target="_blank">
+          View Privacy Policy
+        </a>
+      </div>
     </Div100vh>
   );
 };
