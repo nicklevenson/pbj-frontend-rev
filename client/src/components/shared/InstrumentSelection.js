@@ -1,6 +1,11 @@
 import { useState } from "react";
 
-const InstrumentSelection = ({ list, setInstrumentsCallback, title="Instruments", submitable=false }) => {
+const InstrumentSelection = ({
+  list,
+  setInstrumentsCallback,
+  title = "Instruments",
+  submitable = false,
+}) => {
   const [inputQuery, setInputQuery] = useState("");
   const [results, setResults] = useState([]);
 
@@ -22,12 +27,12 @@ const InstrumentSelection = ({ list, setInstrumentsCallback, title="Instruments"
   };
 
   return (
-    <div className="w-[80%] mx-auto">
-      <label className="font-bold" htmlFor="instruments filter">
+    <div>
+      <label className="font-semibold" htmlFor="instruments filter">
         {title}
       </label>
       <br />
-      <div className="flex">
+      <div className="flex gap-2">
         <input
           name="instruments filter"
           className="border border-solid rounded p-2 w-full"
@@ -39,16 +44,23 @@ const InstrumentSelection = ({ list, setInstrumentsCallback, title="Instruments"
           type="text"
         />
 
-        {submitable && <button className="ml-1 bg-green-300 p-2 rounded" onClick={() => setInstrumentsCallback(inputQuery)}>Add</button>}
+        {submitable && (
+          <button
+            className="button-blue px-6"
+            onClick={() => setInstrumentsCallback(inputQuery)}
+          >
+            Add
+          </button>
+        )}
       </div>
       <div
-        className="bg-gray-200 text-left overflow-y-scroll max-h-32 w-full"
+        className="bg-slate-200 text-left overflow-y-scroll max-h-32 w-full"
         onClick={(e) => handleClick(e)}
       >
         {inputQuery !== ""
           ? results.map((result) => {
               return (
-                <div className="p-2 border-b broder border-gray-300">
+                <div className="p-2 border-b border-slate-300 text-slate-950">
                   {result}
                 </div>
               );

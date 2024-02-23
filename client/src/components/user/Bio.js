@@ -1,6 +1,6 @@
 const Bio = ({ bio }) => {
   return (
-    <div className="italic text-gray-600">{bio ? bio : "I'm a musician!"}</div>
+    <div className="italic text-slate-600">{bio ? bio : "I'm a musician!"}</div>
   );
 };
 

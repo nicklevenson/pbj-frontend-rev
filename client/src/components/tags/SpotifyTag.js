@@ -6,7 +6,7 @@ const SpotifyTag = ({ tag }) => {
         src={tag.imageUrl}
         alt="spotify-artist"
       ></img>
-      <div className="absolute top-0 text-center text-white w-28 bg-gray-500 bg-opacity-25 h-28">
+      <div className="absolute top-0 text-center text-white w-28 bg-slate-500 bg-opacity-25 h-28">
         {tag.name.substr(0, 35)}
         {tag.name.length > 36 ? "..." : null}
       </div>

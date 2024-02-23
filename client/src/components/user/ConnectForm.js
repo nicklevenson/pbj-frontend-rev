@@ -27,7 +27,7 @@ const ConnectForm = ({
       {isPendingOutgoingRequest() && (
         <button
           disabled
-          className="py-2 px-4 bg-indigo-600 text-white border-gray-500 border-solid border rounded disabled"
+          className="button-disabled"
         >
           Pending
         </button>
@@ -36,13 +36,13 @@ const ConnectForm = ({
         <div className="flex gap-8">
           {/* <h5>{this.props.shownUser.username} has requested to connect</h5> */}
           <button
-            className="py-2 px-4 bg-indigo-600 text-white border-gray-500 border-solid border rounded"
+            className="button-indigo flex-1 px-5"
             onClick={handleConnectionAccept}
           >
             Accept
           </button>
           {/* <button
-            className="py-2 px-4 bg-indigo-600 text-white border-gray-500 border-solid border rounded"
+            className="button-indigo flex-1 px-5"
             onClick={handleConnectionReject}
           >
             Reject
@@ -52,7 +52,7 @@ const ConnectForm = ({
       {isAlreadyConnected() && (
         <button
           onClick={handleMessageLink}
-          className="py-2 px-4 bg-indigo-600 text-white border-gray-500 border-solid border rounded"
+          className="button-indigo flex-1 px-5"
         >
           Message
         </button>
@@ -60,7 +60,7 @@ const ConnectForm = ({
       {noConnection() && (
         <button
           onClick={handleConnectionRequest}
-          className="py-2 px-4 bg-indigo-600 text-white border-gray-500 border-solid border rounded"
+          className="button-indigo flex-1 px-5"
         >
           Jam!
         </button>
