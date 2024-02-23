@@ -144,9 +144,13 @@ const LoginCard = () => {
         </div>
       </div>
 
-      <div className="fixed bottom-0 w-full text-center text-xs">
+      <div className="absolute bottom-0 w-full text-center text-xs">
         <a href="https://www.termsfeed.com/live/d6ab7a46-b8e7-4d06-bcaa-d6e80093445c" target="_blank">
           View Privacy Policy
+        </a>
+        {" | "}
+        <a href="https://www.termsfeed.com/live/d4646c97-ebd9-4a57-aa8a-aa133b450433" target="_blank">
+          View Terms of Service
         </a>
       </div>
     </Div100vh>
