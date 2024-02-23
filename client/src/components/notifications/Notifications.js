@@ -22,8 +22,8 @@ const Notifications = () => {
           onClick={() => markRead(notification.id)}
         >
           <div
-            className={`border-b border-black p-4 ${
-              notification.read ? "" : "bg-gray-200"
+            className={`border-b border-slate-600 px-6 p-4 ${
+              notification.read ? "" : "bg-slate-200"
             }`}
           >
             {notification.involvedUser.info.username} {notification.content}
@@ -31,19 +31,25 @@ const Notifications = () => {
         </Link>
       );
     } else {
-      return <div>{notification.content}</div>;
+      return <div className="px-6 p-4">{notification.content}</div>;
     }
   };
 
   return (
     <div>
-      <h1 className="text-xl mb-4 font-bold p-4">Notifications</h1>
+      <div className="inner-container py-3">
+        <h1 className="text-xl font-bold">Notifications</h1>
+      </div>
+
       <div>{renderNotifications()}</div>
-      {notifications.length === 0 && (
-        <div className="text-2xl text-gray-500 text-center">
-          No notifications yet
-        </div>
-      )}
+
+      <div className="inner-container">
+        {notifications.length === 0 && (
+          <div className="text-2xl text-slate-500 text-center">
+            No notifications yet
+          </div>
+        )}
+      </div>
     </div>
   );
 };

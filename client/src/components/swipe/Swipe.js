@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useLayoutEffect } from "react";
-import { Navigate, useOutletContext } from "react-router-dom";
-import UserApi from "../../api/user-api";
-import PreviewUserCard from "./PreviewUserCard";
-import ConnectForm from "../user/ConnectForm";
-import NextUserButton from "./NextUserButton";
 import { Animated } from "react-animated-css";
-import Filter from "./Filter";
+import { Navigate, useOutletContext } from "react-router-dom";
 import camelize from "camelize";
+import ConnectForm from "../user/ConnectForm";
+import Div100vh from "react-div-100vh";
+import Filter from "./Filter";
+import NextUserButton from "./NextUserButton";
+import PreviewUserCard from "./PreviewUserCard";
+import UserApi from "../../api/user-api";
 const Swipe = () => {
   const { currentUser } = useOutletContext();
   const [recs, setRecs] = useState([]);
@@ -97,16 +98,16 @@ const Swipe = () => {
 
   if (loading) {
     return (
-    <div className="absolute inset-0 bg-gray-200 bg-opacity-50 flex justify-center items-center">
-      <div className="text-2xl text-gray-500">Loading...</div>
-    </div>
-    )
+      <div className="absolute inset-0 bg-slate-200 bg-opacity-50 flex justify-center items-center">
+        <div className="text-2xl text-slate-500">Loading...</div>
+      </div>
+    );
   }
 
   if (outOfRecs) {
     return (
-      <div className="absolute inset-0 bg-gray-200 bg-opacity-50 flex justify-center items-center">
-        <div className="text-2xl text-gray-500">That's it for now</div>
+      <div className="absolute inset-0 bg-slate-200 bg-opacity-50 flex justify-center items-center">
+        <div className="text-2xl text-slate-500">That's it for now</div>
         <button
           onClick={() => {
             setOutOfRecs(false);
@@ -114,52 +115,62 @@ const Swipe = () => {
               range: getRecentRange(),
             });
           }}
-          className="ml-4 bg-blue-400 text-white p-2 rounded">
+          className="ml-4 button-blue"
+        >
           Refresh?
-          </button>
+        </button>
       </div>
-    )
+    );
   }
 
   return (
-    <div className="max-w-[100dvw] overflow-x-hidden pb-36">
-      <Filter fetchRecs={fetchRecs} />
-      {currentUser && shownUser && (
-        <div>
-          <Animated
-            animationIn="slideInRight"
-            animationOut="slideOutLeft"
-            isVisible={!cardInTransition}
-            animationInDuration={200}
-          >
-            <PreviewUserCard shownUser={shownUser} currentUser={currentUser} />
-          </Animated>
-          <div className="fixed bottom-14 z-8 h-16 text-2xl w-full bg-gray-200 bg-opacity-50">
-            <div className="pt-2 w-full flex flex-row justify-around">
-              {showConnectForm && 
-                <>
-                  <ConnectForm
-                    currentUser={currentUser}
-                    shownUser={shownUser}
-                    handleMessageLink={handleMessageLink}
-                    handleConnectionRequest={handleConnectionRequest}
-                    handleConnectionAccept={handleConnectionAccept}
-                    handleConnectionReject={handleConnectionReject}
-                  />
-                  <NextUserButton nextCard={nextCard} />
-                </>
-              }
+    <Div100vh>
+      <div>
+        <Filter fetchRecs={fetchRecs} />
+        {currentUser && shownUser && (
+          <div>
+            <div className="pb-32 overflow-y-scroll h-full">
+              <Animated
+                animationIn="slideInRight"
+                animationOut="slideOutLeft"
+                isVisible={!cardInTransition}
+                animationInDuration={200}
+              >
+                <PreviewUserCard
+                  shownUser={shownUser}
+                  currentUser={currentUser}
+                />
+              </Animated>
+            </div>
+            <div className="sticky bottom-0 bg-white bg-opacity-90">
+              <div className="inner-container">
+                <div className="flex justify-around">
+                  {showConnectForm && (
+                    <div className="flex gap-24 items-center justify-center">
+                      <ConnectForm
+                        currentUser={currentUser}
+                        shownUser={shownUser}
+                        handleMessageLink={handleMessageLink}
+                        handleConnectionRequest={handleConnectionRequest}
+                        handleConnectionAccept={handleConnectionAccept}
+                        handleConnectionReject={handleConnectionReject}
+                      />
+                      <NextUserButton nextCard={nextCard} />
+                    </div>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
 
-      {recs.length === 0 && 
-        <div className="absolute inset-0 bg-gray-200 bg-opacity-50 flex justify-center items-center">
-            <div className="text-2xl text-gray-500">No users found</div>
-        </div>
-      }
-    </div>
+        {recs.length === 0 && (
+          <div className="absolute inset-0 bg-slate-200 flex justify-center items-center">
+            <div className="text-2xl text-slate-600">No users found</div>
+          </div>
+        )}
+      </div>
+    </Div100vh>
   );
 };
 

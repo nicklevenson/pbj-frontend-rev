@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 const ConnectionPreview = ({ user }) => {
   const { username } = user.info;
   return (
-    <div className="bg-gray-100 rounded p-2 m-2 w-32 h-32">
-      <div className="rounded-full h-20 w-20 overflow-hidden mx-auto">
+    <div className="bg-slate-100 rounded-lg p-4 m-2 w-32 h-32 flex flex-col gap-2 items-center justify-center">
+      <div className="rounded-full h-20 w-16 overflow-hidden">
         <Link to={`/users/${user.info.id}`}>
           <UserPhoto userInfo={user.info} />
         </Link>

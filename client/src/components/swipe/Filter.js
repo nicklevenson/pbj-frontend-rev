@@ -1,11 +1,12 @@
 import { useState, useLayoutEffect } from "react";
-import RangeSlider from "./RangeSlider";
 import { BsFilter } from "react-icons/bs";
+import Div100vh from "react-div-100vh";
+import FilterSelections from "./FilterSelections";
+import GenericTag from "../tags/GenericTag";
+import GenreSelection from "../shared/GenreSelection";
 import InstrumentSelection from "../shared/InstrumentSelection";
 import ListsApi from "../../api/lists_api";
-import GenreSelection from "../shared/GenreSelection";
-import GenericTag from "../tags/GenericTag";
-import FilterSelections from "./FilterSelections";
+import RangeSlider from "./RangeSlider";
 
 const Filter = ({ fetchRecs }) => {
   const [displayed, setDisplayed] = useState(false);
@@ -65,49 +66,69 @@ const Filter = ({ fetchRecs }) => {
 
   return (
     <>
-      <div onClick={() => setDisplayed(!displayed)} className="absolute z-10 bg-white w-full text-center ">
-        <BsFilter size={"2rem"} className="mx-auto" />
-      </div>
-        {displayed && (
-        <div className="mt-20 fixed inset-0 overflow-y-scroll z-10 bg-white text-center">
-          <div>
-            <RangeSlider
-              rangeSlider={rangeSlider}
-              changeRangeSlider={changeRangeSlider}
-            />
-            <InstrumentSelection
-              list={instrumentsList.filter((i) => !instruments.includes(i))}
-              setInstrumentsCallback={setInstrumentsCallback}
-            />
-            <br />
-            <GenreSelection
-              list={genresList.filter((g) => !genres.includes(g))}
-              setGenresCallback={setGenresCallback}
-            />
-            <br />
-
-            <FilterSelections
-              selections={instruments}
-              heading={"Plays"}
-              removeCallback={handleRemoveInstrument}
-            />
-
-            <FilterSelections
-              selections={genres}
-              heading={"Listens To"}
-              removeCallback={handleRemoveGenre}
-            />
-            <div className="absolute bottom-8 h-20 w-full">
-              <button
-                className="text-xl font-bold w-52 bg-gray-600 text-white p-2 rounded"
-                onClick={sendFilters}
-              >
-                Apply Filters
-              </button>
-            </div>
+      <div className="z-10 fixed top-0 left-0 w-full">
+        <div className="z-20 absolute top-0 left-0 w-full pt-12">
+          <div
+            className=" bg-white py-1 flex items-center justify-center"
+            onClick={() => setDisplayed(!displayed)}
+          >
+            <BsFilter size={"2rem"} />
           </div>
         </div>
-      )}
+
+        {displayed && (
+          <Div100vh className="bg-white absolute top-0 left-0 w-full">
+            <div className="h-full overflow-y-scroll pt-12 pb-48">
+              <div className="inner-container">
+                <div className="flex flex-col gap-6">
+                  <div className="text-center">
+                    <RangeSlider
+                      rangeSlider={rangeSlider}
+                      changeRangeSlider={changeRangeSlider}
+                    />
+                  </div>
+                  <InstrumentSelection
+                    list={instrumentsList.filter(
+                      (i) => !instruments.includes(i)
+                    )}
+                    setInstrumentsCallback={setInstrumentsCallback}
+                  />
+
+                  <GenreSelection
+                    list={genresList.filter((g) => !genres.includes(g))}
+                    setGenresCallback={setGenresCallback}
+                  />
+
+                  <FilterSelections
+                    selections={instruments}
+                    heading={"Plays"}
+                    removeCallback={handleRemoveInstrument}
+                  />
+
+                  <FilterSelections
+                    selections={genres}
+                    heading={"Listens To"}
+                    removeCallback={handleRemoveGenre}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="fixed bottom-0 left-0 w-full bg-white bg-opacity-90">
+              <div className="inner-container">
+                <div className="max-w-[350px] mx-auto flex gap-4">
+                  <button
+                    className="button-blue px-5 flex-1"
+                    onClick={sendFilters}
+                  >
+                    Apply Filters
+                  </button>
+                </div>
+              </div>
+            </div>
+          </Div100vh>
+        )}
+      </div>
     </>
   );
 };

@@ -62,7 +62,7 @@ const MessageRoom = () => {
                       <div className="bg-blue-200 p-2 rounded m-2 max-w-full ml-auto">
                         {message.content}
                       </div>
-                      <div className="text-xs text-gray-400">
+                      <div className="text-xs text-slate-400">
                         {message.createdAt}
                       </div>
                     </div>
@@ -90,7 +90,7 @@ const MessageRoom = () => {
                       <div className="bg-blue-200 p-2 rounded m-2 max-w-full">
                         {message.content}
                       </div>
-                      <div className="text-xs text-gray-400">
+                      <div className="text-xs text-slate-400">
                         {message.createdAt}
                       </div>
                     </div>
@@ -100,17 +100,14 @@ const MessageRoom = () => {
             })}
           </div>
 
-          <div className="p-4 flex justify-center bg-white w-full">
+          <div className="p-4 flex gap-4 justify-center items-stretch bg-white w-full">
             <input
               placeholder="chat"
               value={newMessage}
               onChange={(e) => setNewMessage(e.target.value)}
-              className="border rounded p-2 bg-gray-200 h-10"
+              className="border rounded p-2 bg-slate-200"
             />
-            <button
-              onClick={sendMessage}
-              className="bg-blue-300 p-2 rounded ml-4 h-10"
-            >
+            <button onClick={sendMessage} className="button-blue px-5">
               Send
             </button>
           </div>

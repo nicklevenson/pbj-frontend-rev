@@ -24,16 +24,19 @@ const Messages = () => {
   });
 
   return (
-    <div className="px-4">
-      <h1 className="py-4 text-xl mb-4 font-bold">Messages</h1>
+    <div>
+      <div className="inner-container py-3">
+        <h1 className="text-xl font-bold">Messages</h1>
+      </div>
+
       {chatrooms && (
-        <div>
+        <div className="inner-container">
           {orderedChatrooms.map((chatroom) => {
             return (
               <Link to={`${chatroom.id}`}>
                 <div
                   className={`flex p-2 rounded ${
-                    chatroom.hasUnread ? "bg-gray-400" : ""
+                    chatroom.hasUnread ? "bg-slate-400" : ""
                   }`}
                 >
                   <div className="rounded-full h-12 w-12 overflow-hidden">
@@ -44,7 +47,7 @@ const Messages = () => {
                     <div className="font-bold">
                       {chatroom.otherUserInfo.info.username}
                     </div>
-                    <div className="text-gray-500 italic">
+                    <div className="text-slate-500 italic">
                       {chatroom.messages[
                         chatroom.messages.length - 1
                       ]?.content.substring(0, 10)}
@@ -57,7 +60,7 @@ const Messages = () => {
           })}
 
           {chatrooms.length === 0 && (
-            <div className="text-2xl text-gray-500 text-center">
+            <div className="text-2xl text-slate-500 text-center">
               No messages yet
             </div>
           )}

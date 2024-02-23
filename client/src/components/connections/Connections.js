@@ -34,8 +34,11 @@ const Connections = () => {
 
   return (
     <div>
-      <h1 className="text-xl mb-4 font-bold p-4">Connections</h1>
-      <div>
+      <div className="inner-container py-3">
+        <h1 className="text-xl font-bold">Connections</h1>
+      </div>
+
+      <div className="inner-container">
         {connectedUsers?.length > 0 &&
           renderConnectionSection(connectedUsers, "Connected With")}
         {incomingConnections?.length > 0 &&
@@ -45,7 +48,7 @@ const Connections = () => {
         {connectedUsers?.length == 0 &&
           incomingConnections?.length == 0 &&
           pendingConnections?.length == 0 && (
-            <div className="text-2xl text-gray-500 text-center">
+            <div className="text-2xl text-slate-600 text-center">
               No connections yet, swipe to find some!
             </div>
           )}
