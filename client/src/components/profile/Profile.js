@@ -10,7 +10,7 @@ const Profile = () => {
   const { currentUser } = useOutletContext();
 
   return (
-    <div className="pb-36">
+    <div className="pb-36 relative">
       {currentUser && (
         <div>
           <div className="inner-container py-1">
@@ -29,6 +29,12 @@ const Profile = () => {
           {logoutPrompt && <LogoutModal setLogoutPrompt={setLogoutPrompt} />}
         </div>
       )}
+
+      <div className="absolute bottom-0 w-full text-center text-xs">
+        <a href="https://www.termsfeed.com/live/d6ab7a46-b8e7-4d06-bcaa-d6e80093445c" target="_blank">
+          View Privacy Policy
+        </a>
+      </div>
     </div>
   );
 };
