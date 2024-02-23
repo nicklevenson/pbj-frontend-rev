@@ -42,21 +42,22 @@ const Nav = ({ notifications, chatrooms, currentUser }) => {
 
   return (
     <>
-      <div className="flex flex-row sticky -bottom-1 h-16 w-full justify-between px-4 bg-gray-300 items-center">
+      <div className="sticky bottom-0 bg-white border-t border-slate-200">
+        <div className="max-w-[600px] mx-auto p-4 flex justify-between items-center text-slate-900">
         <Link to="swipe">
           <span>
             <MdOutlineSwipe size={"2rem"} />
           </span>
         </Link>
         <Link to="messages">
-          <span className="relative">
+            <div className="relative">
             <AiOutlineMessage size={"2rem"} />
             {currentUser && hasUnreadMessages() && (
-              <div className="absolute -top-2 -right-2 bg-red-400 rounded-full text-sm px-1">
+                <div className="absolute -top-2 -right-2 leading-none pt-1 pb-px font-semibold bg-red-500 text-white rounded-full text-sm px-1 w-6 h-6 text-center">
                 {unreadMessages().length}
               </div>
             )}
-          </span>
+            </div>
         </Link>
         <Link to="connections">
           <span>
@@ -64,20 +65,21 @@ const Nav = ({ notifications, chatrooms, currentUser }) => {
           </span>
         </Link>
         <Link to="notifications">
-          <span className="relative">
+            <div className="relative">
             <IoNotificationsOutline size={"2rem"} />
             {hasUnreadNotifications() && (
-              <div className="absolute -top-2 -right-2 bg-red-400 rounded-full text-sm px-1">
+                <div className="absolute -top-2 -right-2 leading-none pt-1 pb-px font-semibold bg-red-500 text-white rounded-full text-sm px-1 w-6 h-6 text-center">
                 {unreadNotifications().length}
               </div>
             )}
-          </span>
+            </div>
         </Link>
         <Link to="profile">
           <span>
             <FiSettings size={"2rem"} />
           </span>
         </Link>
+      </div>
       </div>
     </>
   );

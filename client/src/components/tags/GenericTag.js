@@ -2,15 +2,15 @@ import helpers from "../../global-helpers";
 
 const GenericTag = ({ tag, editable, removeTag }) => {
   return (
-    <span className="bg-blue-300 rounded p-2 mx-2 my-1 text-white inline-block">
-      {helpers.titleize(tag)}
+    <span className="tag-blue">
+      <div className="pt-1">{helpers.titleize(tag)}</div>
       {editable ? (
         <button
-          className="ml-2  text-black"
+          className="px-2"
           onClick={(e) => removeTag(e, tag)}
           aria-label="remove this item"
         >
-          X
+          x
         </button>
       ) : null}
     </span>

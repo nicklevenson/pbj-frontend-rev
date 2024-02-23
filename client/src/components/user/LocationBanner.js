@@ -13,7 +13,7 @@ const LocationBanner = ({ location, distance }) => {
       <div className="flex">
         <GrLocation className="mr-2 my-1" /> <span>{location || "Earth"}</span>
       </div>
-      <div className="italic text-gray-500">{renderDistance()}</div>
+      <div className="italic text-slate-500">{renderDistance()}</div>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 const NextUserButton = ({ nextCard }) => {
   return (
     <button
-      className="py-2 px-4 h-full bg-indigo-600 text-white border-gray-500 border-solid border rounded"
+      className="button-indigo flex-1 px-5"
       onClick={nextCard}
     >
       Next

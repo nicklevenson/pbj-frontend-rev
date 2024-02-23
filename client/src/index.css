@@ -25,20 +25,131 @@
   font-weight: bold;
 }
 
+@layer components {
+  .button-base {
+    @apply box-border;
+    @apply rounded-full;
+    @apply p-3;
+    @apply font-semibold;
+    @apply duration-150;
+    @apply transition-all;
+    @apply cursor-pointer;
+    @apply inline-flex;
+    @apply items-center;
+    @apply justify-center;
+  }
+  .button-black {
+    @apply button-base;
+    @apply bg-black;
+    @apply text-white;
+  }
+  .button-black:hover,
+  .button-black:focus {
+    @apply bg-gray-800;
+  }
+  .button-blue {
+    @apply button-base;
+    @apply bg-blue-500;
+    @apply text-white;
+  }
+  .button-blue:hover,
+  .button-blue:focus {
+    @apply bg-blue-600;
+  }
+  .button-indigo {
+    @apply button-base;
+    @apply bg-indigo-500;
+    @apply text-white;
+  }
+  .button-indigo:hover,
+  .button-indigo:focus {
+    @apply bg-indigo-600;
+  }
+  .button-outlined {
+    @apply button-base;
+    @apply bg-white;
+    @apply text-slate-950;
+    @apply border-2;
+    @apply border-slate-900;
+  }
+  .button-outlined:hover,
+  .button-outlined:focus {
+    @apply bg-slate-50;
+  }
+  .button-outlined-blue {
+    @apply button-base;
+    @apply bg-white;
+    @apply text-blue-500;
+    @apply border-2;
+    @apply border-blue-500;
+  }
+  .button-outlined-blue:hover,
+  .button-outlined-blue:focus {
+    @apply bg-blue-50;
+  }
+  .button-disabled {
+    @apply button-base;
+    @apply bg-slate-300;
+    @apply text-slate-700;
+    @apply cursor-not-allowed;
+  }
+
+  .inner-container {
+    @apply max-w-[600px];
+    @apply mx-auto;
+    @apply p-6;
+  }
+  @media (min-width: 640px) {
+    .inner-container {
+      @apply px-0;
+    }
+  }
+  .tag-base {
+    @apply box-border;
+    @apply rounded;
+    @apply px-2;
+    @apply py-1;
+    @apply font-normal;
+    @apply duration-150;
+    @apply transition-all;
+    @apply cursor-pointer;
+    @apply inline-flex;
+    @apply text-sm;
+  }
+  .tag-blue {
+    @apply tag-base;
+    @apply bg-blue-400;
+    @apply text-white;
+  }
+  .tag-blue:hover,
+  .tag-blue:focus {
+    @apply bg-blue-500;
+  }
+  .tag-teal {
+    @apply tag-base;
+    @apply bg-teal-400;
+    @apply text-white;
+  }
+  .tag-teal:hover,
+  .tag-teal:focus {
+    @apply bg-teal-500;
+  }
+}
+
 .bg-gradient-animation {
-	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-	background-size: 400% 400%;
-	animation: gradient 15s ease infinite;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #5375ff, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
 }
 
 @keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }

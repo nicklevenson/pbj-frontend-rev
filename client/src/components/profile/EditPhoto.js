@@ -58,9 +58,9 @@ const EditPhotoModal = (props) => {
   };
 
     return (
-      <div className="relative">
-        <form className="absolute bottom-0 bg-gray-300 w-full text-center py-2">
-          <label htmlFor="img">
+      <div>
+        <form >
+          <label htmlFor="img" className="button-outlined-blue w-full">
             {photoError
               ? photoError
               : uploading
