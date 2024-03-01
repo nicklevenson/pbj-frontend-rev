@@ -22,7 +22,7 @@ const Notifications = () => {
           onClick={() => markRead(notification.id)}
         >
           <div
-            className={`border-b border-slate-600 px-6 p-4 ${
+            className={`border-b border-slate-200 px-6 p-4 ${
               notification.read ? "" : "bg-slate-200"
             }`}
           >
@@ -41,9 +41,8 @@ const Notifications = () => {
         <h1 className="text-xl font-bold">Notifications</h1>
       </div>
 
-      <div>{renderNotifications()}</div>
-
       <div className="inner-container">
+        <div>{renderNotifications()}</div>
         {notifications.length === 0 && (
           <div className="text-2xl text-slate-500 text-center">
             No notifications yet
